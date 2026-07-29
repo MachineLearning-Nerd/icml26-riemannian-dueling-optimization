@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Riemannian Dueling Optimization",
+  "emoji": "🎯",
+  "space_id": null,
+  "paper": null,
+  "tags": [
+    "icml2026-repro",
+    "paper-nDfDnsyllY"
+  ],
+  "updated_at": "2026-07-29T12:56:05+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Riemannian Dueling Optimization",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "claim-1-rdngd",
+        "title": "Claim 1 — RDNGD",
+        "file": "pages/claim-1-rdngd/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-rrdngd",
+        "title": "Claim 2 — RRDNGD",
+        "file": "pages/claim-2-rrdngd/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-rdfw",
+        "title": "Claim 3 — RDFW",
+        "file": "pages/claim-3-rdfw/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4-comparison-estimator",
+        "title": "Claim 4 — Comparison estimator",
+        "file": "pages/claim-4-comparison-estimator/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-cifar-attack",
+        "title": "Claim 5 — CIFAR attack",
+        "file": "pages/claim-5-cifar-attack/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6-synthetic-manifolds",
+        "title": "Claim 6 — Synthetic manifolds",
+        "file": "pages/claim-6-synthetic-manifolds/page.md",
+        "children": []
+      },
+      {
+        "slug": "methods",
+        "title": "Methods",
+        "file": "pages/methods/page.md",
+        "children": []
+      },
+      {
+        "slug": "negative-controls",
+        "title": "Negative controls",
+        "file": "pages/negative-controls/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 1716,
+  "revision": "1785329765472695998"
+}

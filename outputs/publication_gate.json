@@ -1,0 +1,16 @@
+{
+  "arxiv": "2603.00023",
+  "checks": {
+    "c5_not_proxied": true,
+    "five_source_complete_claims_pass": true,
+    "full_rayleigh_iterations": true,
+    "independent_estimator_control": true,
+    "theory_scope_limitation_explicit": true
+  },
+  "claim_count": 5,
+  "paper": "nDfDnsyllY",
+  "publication_eligible": true,
+  "publication_gate_passed": true,
+  "scope": "five source-complete CPU claims C1-C4/C6; C5 CIFAR/VGG is explicitly unsupported for missing author attack artifacts",
+  "tests_passed": true
+}
