@@ -1,6 +1,6 @@
 # STATUS — nDfDnsyllY
 
-**State: LOCAL GATE PASSED — public handoff next.**
+**State: PUBLIC + QUEUED — awaiting shared HF Space drain.**
 
 - Six anchored claims, five source-complete CPU targets (C1–C4, C6).
 - Pinned arXiv `2603.00023` source SHA-256:
@@ -14,4 +14,7 @@
 - The fail-closed gate passes; Trackio contains five verified claim pages, the
   excluded-C5 page, Methods, Negative controls, full verifier/gate runs, and a
   pinned Conclusion. Secret scan found only bundled Trackio JavaScript names.
-- Next: push public GitHub, then atomically enqueue the shared HF publisher.
+- Public GitHub repository is live at commit `1ed657d`; the full local gate
+  preceded the canonical atomic backlog entry.
+- The shared drain is the sole HF Space publisher. Next action is public Space
+  readback after the quota permits creation.
