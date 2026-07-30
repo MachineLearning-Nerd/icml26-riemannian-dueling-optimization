@@ -17,13 +17,17 @@ theorems = json.loads((root / "outputs" / "theorem_audit.json").read_text())
 assert theorems["claim2_counterexample"]["status"] == "FALSIFIED"
 dense_spd = json.loads((root / "outputs" / "dense_spd.json").read_text())
 assert dense_spd["status"] == "VERIFIED"
+applications = json.loads(
+    (root / "outputs" / "real_applications.json").read_text()
+)
+assert applications["horizon_status"] == "VERIFIED"
 gate = {
     "paper": "nDfDnsyllY",
     "arxiv": "2603.00023",
     "publication_eligible": False,
     "publication_gate_passed": False,
     "research_node_valid": True,
-    "reason": "C5 and C1 nonconvex calibration remain incomplete.",
+    "reason": "The paper-setting attack route and C1 nonconvex calibration need review.",
 }
 (root / "outputs" / "publication_gate.json").write_text(json.dumps(gate, indent=2, sort_keys=True) + "\n")
 (root / "GATE_READY.md").write_text("RELEASE_BLOCKED: research node only\n")

@@ -16,6 +16,7 @@ import numpy as np
 from verify_claim4 import verify as verify_claim4
 from empirical_algorithms import verify as verify_empirical_algorithms
 from dense_spd import verify as verify_dense_spd
+from real_applications import verify as verify_real_applications
 from theorem_audit import verify as verify_theorems
 
 SOURCE_SHA = "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
@@ -132,6 +133,7 @@ def main():
     verify_empirical_algorithms()
     verify_theorems()
     verify_dense_spd()
+    verify_real_applications()
     print(json.dumps({
         "verified_claim_count": verdict["verified_claim_count"],
         "all_target_claims_passed": verdict["all_target_claims_passed"],

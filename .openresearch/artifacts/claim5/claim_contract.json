@@ -1,0 +1,7 @@
+{
+  "claim": 5,
+  "route": "paper-setting CPU applications",
+  "attack_verified_if": "At least one initially correct, non-vacuous CIFAR-10 input is misclassified after 1000 comparison-only RDNGD steps while remaining on the prescribed sphere",
+  "horizon_verified_if": "All 19 SO(2) tilts reach best loss below 1e-5 in 100 comparison-only steps and a reversed-oracle control fails",
+  "overall_status": "VERIFIED only if both application checks verify; otherwise BLOCKED"
+}
