@@ -146,12 +146,13 @@ def mean_upper_95(values: list[float]) -> tuple[float, float]:
 def calibrate_rdngd() -> dict:
     horizons = [32, 64, 128, 256, 512, 1024, 2048, 4096]
     nonconvex_calibration = []
+    nonconvex_calibration_summaries = []
     convex_calibration = []
     nonconvex_selected = []
     convex_selected = []
     for d in (5, 9, 17):
         for epsilon in (0.35, 0.25, 0.18):
-            means = []
+            candidates = []
             for horizon in horizons:
                 rows = [
                     nonconvex_rdngd(
@@ -159,18 +160,31 @@ def calibrate_rdngd() -> dict:
                     )
                     for index in range(6)
                 ]
-                mean = float(
-                    np.mean(
-                        [
-                            row["mean_random_iterate_gradient_norm"]
-                            for row in rows
-                        ]
-                    )
+                values = [
+                    row["mean_random_iterate_gradient_norm"] for row in rows
+                ]
+                mean = float(np.mean(values))
+                standard_error = float(
+                    np.std(values, ddof=1) / math.sqrt(len(values))
                 )
+                upper = mean + 2.571 * standard_error
                 nonconvex_calibration.extend(rows)
-                means.append((horizon, mean))
+                candidate = {
+                    "ambient_d": d,
+                    "d": d - 1,
+                    "epsilon": epsilon,
+                    "horizon": horizon,
+                    "calibration_mean": mean,
+                    "calibration_upper_95": upper,
+                }
+                nonconvex_calibration_summaries.append(candidate)
+                candidates.append(candidate)
             selected = next(
-                (horizon for horizon, mean in means if mean < epsilon),
+                (
+                    candidate["horizon"]
+                    for candidate in candidates
+                    if candidate["calibration_upper_95"] < 0.9 * epsilon
+                ),
                 horizons[-1],
             )
             validation = [
@@ -247,9 +261,13 @@ def calibrate_rdngd() -> dict:
     )
     return {
         "horizon_grid": horizons,
-        "selection_rule": "first calibration horizon whose six-seed mean is below epsilon",
+        "selection_rule": (
+            "first calibration horizon whose six-seed one-sided 95% upper "
+            "confidence bound is below 0.9 * epsilon; validation seeds are untouched"
+        ),
         "validation_rule": "held-out 20 seeds; report mean and two-sided-t upper endpoint",
         "nonconvex_calibration": nonconvex_calibration,
+        "nonconvex_calibration_summaries": nonconvex_calibration_summaries,
         "nonconvex_selected": nonconvex_selected,
         "convex_calibration": convex_calibration,
         "convex_selected": convex_selected,
@@ -485,6 +503,8 @@ def verify() -> dict:
     assert rdngd["controls"]["reversed_convex_oracle"][
         "best_suboptimality"
     ] > 0.02
+    assert nonconvex_success == 9
+    assert convex_success == 9
     result = {
         "paper": "2603.00023",
         "seed_root": SEED,
