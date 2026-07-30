@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def symbolic_certificates() -> dict:
-    epsilon, c_hat, d, length, smooth, distance = sp.symbols(
+    epsilon, c_hat, d, smooth, distance = sp.symbols(
         "epsilon c_hat d L D", positive=True
     )
     horizon_root = smooth * sp.sqrt(d) * (distance + 1) / (
