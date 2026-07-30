@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import math
 import os
@@ -16,7 +17,7 @@ import numpy as np
 import torch
 import torch.nn.functional as functional
 from torch import nn
-from torchvision import datasets, transforms
+from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,6 +28,11 @@ WEIGHTS_URL = (
 )
 WEIGHTS_SHA256 = (
     "eaeebf42370c92fdfbb5dbe8eba7c27d4eb7366a1dca0b5be435364ccdf54378"
+)
+DATASET_REVISION = "0b2714987fa478483af9968de7c934580d0bb9a2"
+DATASET_ROWS_URL = (
+    "https://datasets-server.huggingface.co/rows?"
+    "dataset=uoft-cs%2Fcifar10&config=plain_text&split=test&offset=0&length=16"
 )
 
 
@@ -123,14 +129,33 @@ def load_assets() -> tuple[nn.Module, torch.Tensor, torch.Tensor, list[int], dic
 
     model = CifarVgg11Bn().eval()
     model.load_state_dict(torch.load(weights, map_location="cpu", weights_only=True))
-    dataset = datasets.CIFAR10(
-        root=cache,
-        train=False,
-        download=True,
-        transform=transforms.ToTensor(),
+    rows_request = urllib.request.Request(
+        DATASET_ROWS_URL,
+        headers={"User-Agent": "OpenResearch-Reproduction/1.0"},
     )
-    candidates = torch.stack([dataset[index][0] for index in range(128)])
-    labels = torch.tensor([dataset[index][1] for index in range(128)])
+    with urllib.request.urlopen(rows_request, timeout=120) as response:
+        rows_payload = response.read()
+    rows = json.loads(rows_payload)["rows"]
+    image_tensors = []
+    image_hashes = []
+    for item in rows:
+        image_url = item["row"]["img"]["src"]
+        if DATASET_REVISION not in image_url:
+            raise RuntimeError("CIFAR row is not pinned to the expected revision")
+        image_request = urllib.request.Request(
+            image_url,
+            headers={"User-Agent": "OpenResearch-Reproduction/1.0"},
+        )
+        with urllib.request.urlopen(image_request, timeout=120) as response:
+            image_bytes = response.read()
+        image_hashes.append(hashlib.sha256(image_bytes).hexdigest())
+        image = np.asarray(
+            Image.open(io.BytesIO(image_bytes)).convert("RGB"),
+            dtype=np.float32,
+        )
+        image_tensors.append(torch.from_numpy(image).permute(2, 0, 1) / 255)
+    candidates = torch.stack(image_tensors)
+    labels = torch.tensor([item["row"]["label"] for item in rows])
     with torch.inference_mode():
         predictions = model(candidates).argmax(1)
     selected = torch.nonzero(predictions == labels).flatten()[:2].tolist()
@@ -138,14 +163,16 @@ def load_assets() -> tuple[nn.Module, torch.Tensor, torch.Tensor, list[int], dic
         raise RuntimeError("could not locate two correctly classified inputs")
     images = candidates[selected]
     selected_labels = labels[selected]
-    archive = cache / "cifar-10-python.tar.gz"
     asset_metadata = {
         "model": "chenyaofo/pytorch-cifar-models:cifar10_vgg11_bn",
         "weights_url": WEIGHTS_URL,
         "weights_sha256": WEIGHTS_SHA256,
         "model_state_sha256": model_state_sha256(model),
-        "dataset": "torchvision CIFAR-10 test split",
-        "dataset_archive_sha256": sha256_file(archive),
+        "dataset": "uoft-cs/cifar10 test split via Dataset Viewer rows API",
+        "dataset_revision": DATASET_REVISION,
+        "dataset_rows_url": DATASET_ROWS_URL,
+        "dataset_rows_response_sha256": hashlib.sha256(rows_payload).hexdigest(),
+        "candidate_image_sha256": image_hashes,
         "selected_test_indices": selected,
     }
     return model, images, selected_labels, selected, asset_metadata
@@ -233,7 +260,8 @@ def paper_setting_attack(
         )
         with torch.inference_mode():
             candidate_loss = losses(
-                model(perturbed.flatten(0, 1)),
+                model,
+                perturbed.flatten(0, 1),
                 candidate_labels.flatten(),
             ).reshape(count, 2 * batch_directions)
         signs = torch.where(
@@ -366,7 +394,8 @@ def verify() -> dict:
     checks = {
         "pinned_model_and_data": (
             assets["weights_sha256"] == WEIGHTS_SHA256
-            and len(assets["dataset_archive_sha256"]) == 64
+            and assets["dataset_revision"] == DATASET_REVISION
+            and len(assets["dataset_rows_response_sha256"]) == 64
         ),
         "clean_inputs_correct": attack["clean_predictions"] == attack["labels"],
         "sphere_feasible": attack["maximum_radius_error"] < 1e-5,
