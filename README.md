@@ -1,3 +1,10 @@
+# Current reproduction campaign
+
+The current evaluator entrypoint is
+[Current verification](.trackio/logbook/pages/current-verification/page.md).
+It supersedes the preserved **Historical rejected baseline** without deleting
+any judged files.
+
 # Riemannian Dueling Optimization
 
 CPU-only source-faithful reproduction for ICML 2026 paper `nDfDnsyllY`

@@ -1,0 +1,6 @@
+{
+  "construction": "For every sampled u include -u and remove sign(<v,u>).",
+  "expected_failure": "The estimator mean is zero rather than gradient-aligned.",
+  "paired_antithetic_unsigned_mean_norm": 0.0,
+  "passed_as_negative_control": true
+}

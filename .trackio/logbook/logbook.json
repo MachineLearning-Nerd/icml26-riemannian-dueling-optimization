@@ -10,10 +10,21 @@
   ],
   "updated_at": "2026-07-29T12:56:05+00:00",
   "root": {
-    "slug": "index",
-    "title": "Repro - Riemannian Dueling Optimization",
-    "file": "pages/index.md",
+    "slug": "current-verification",
+    "title": "Current verification",
+    "file": "pages/current-verification/page.md",
     "children": [
+      {
+        "slug": "current-claim-4",
+        "title": "Claim 4 — current verification",
+        "file": "pages/current-claim-4/page.md",
+        "children": []
+      },
+      {
+        "slug": "historical-rejected-baseline",
+        "title": "Historical rejected baseline",
+        "file": "pages/index.md",
+        "children": [
       {
         "slug": "claim-1-rdngd",
         "title": "Claim 1 — RDNGD",
@@ -67,6 +78,8 @@
         "title": "Conclusion",
         "file": "pages/conclusion/page.md",
         "children": []
+      }
+        ]
       }
     ]
   },

@@ -1,0 +1,5 @@
+PASS
+Observed C_hat range: 0.8016904228056723 to 0.8375243347562833
+Source lower bound: 0.3989422804014327
+Maximum perpendicular error: 0.0041206350313824774
+The analytic checker additionally compares each estimate with sqrt(d) E|U_1|.

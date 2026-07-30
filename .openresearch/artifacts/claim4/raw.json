@@ -1,0 +1,28 @@
+{
+  "actual_logical_cpus": 64,
+  "dimensions": [
+    {
+      "C_hat": 0.8375243347562833,
+      "d": 5,
+      "perpendicular_error": 0.002934928663112765
+    },
+    {
+      "C_hat": 0.8086866556496503,
+      "d": 25,
+      "perpendicular_error": 0.0041206350313824774
+    },
+    {
+      "C_hat": 0.8016904228056723,
+      "d": 100,
+      "perpendicular_error": 0.0035109501913837635
+    }
+  ],
+  "evidence_commit": "699185628f09c4d8ed78e76c2029e873e3facb74",
+  "hf_flavor": "cpu-upgrade",
+  "openblas_num_threads": 1,
+  "python": "3.12.12",
+  "run_id": "aa0bd0f6-283a-4c33-80f7-9a1b7862dc6d",
+  "runtime_seconds_cumulative_legacy_suite": 3.1236952250001195,
+  "samples_per_dimension": 80000,
+  "seed": 20260729
+}

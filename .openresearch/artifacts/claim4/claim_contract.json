@@ -1,0 +1,17 @@
+{
+  "claim_id": 4,
+  "paper": "Riemannian Dueling Optimization",
+  "source": {
+    "retrieved_at_utc": "2026-07-30T17:16:02Z",
+    "sha256": "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323",
+    "url": "https://ar5iv.labs.arxiv.org/html/2603.00023"
+  },
+  "source_contract": {
+    "lemma_3_1": "For geodesically L-smooth f, unit-uniform tangent u, and nu in (0,1), h_nu(x) equals sign(<grad f(x),u>)u with probability at least 1-gamma_x.",
+    "lemma_3_2": "For nonzero tangent v and unit-uniform tangent u, E[sign(<v,u>)u]=(C_hat/sqrt(d))v/||v|| with C_hat in [1/sqrt(2pi),1]."
+  },
+  "verdict_rule": {
+    "control": "An unsigned antithetic direction set must have exactly zero mean.",
+    "pass": "Every empirical C_hat is in the source interval, differs from the exact spherical constant by less than 0.05, and has perpendicular error below 0.01."
+  }
+}

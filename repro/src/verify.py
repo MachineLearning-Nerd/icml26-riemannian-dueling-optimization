@@ -13,6 +13,8 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 import numpy as np
 
+from verify_claim4 import verify as verify_claim4
+
 SOURCE_SHA = "1df1a267c036a4ef161c02719c4b88bb4cb321099d10b5ac3485a97a51e1a71d"
 
 
@@ -123,6 +125,7 @@ def main():
     }
     verdict = {"paper": "nDfDnsyllY", "arxiv": "2603.00023", "source_sha256": SOURCE_SHA, "claims": claims, "verified_claim_count": sum(c["passed"] for c in claims.values()), "all_target_claims_passed": all(claims[k]["passed"] for k in ("C1","C2","C3","C4","C6")), "scope": "five source-complete CPU constructions; C5 explicitly unsupported rather than proxied."}
     root = Path(__file__).resolve().parents[2]; out=root/'outputs'/'verdict.json'; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps(verdict,indent=2,sort_keys=True)+'\n')
+    verify_claim4()
     print(json.dumps({
         "verified_claim_count": verdict["verified_claim_count"],
         "all_target_claims_passed": verdict["all_target_claims_passed"],

@@ -1,0 +1,7 @@
+Python requirement: ==3.12.*
+Lockfile: uv.lock
+Backend: Hugging Face cpu-upgrade
+Image: ghcr.io/astral-sh/uv:python3.12-bookworm
+Estimated scientific cores: 1
+Actual allocation: 64 logical CPUs
+Scientific thread cap: OPENBLAS_NUM_THREADS=1
