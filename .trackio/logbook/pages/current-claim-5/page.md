@@ -42,8 +42,9 @@ uv run --locked python repro/src/verify.py && uv run --locked python repro/src/p
 
 Checkpoint SHA-256 begins `eaeebf42`; CIFAR dataset revision
 `0b2714987fa478483af9968de7c934580d0bb9a2`. Evidence run
-`7443fdc4-50fb-4443-8915-f5dc0ab9d5f8`, seed 20260730. Estimated 8 cores;
-64 logical CPUs allocated, PyTorch limited to 8 threads; route runtime 168.17 s.
+`7443fdc4-50fb-4443-8915-f5dc0ab9d5f8`, seed 20260730. HF `cpu-upgrade`:
+estimated 8 cores, 64 logical CPUs allocated, PyTorch limited to 8 threads;
+route runtime 168.17 s.
 
 **Limitations.** The paper does not identify its checkpoint or indices. HLW
 pixels require a separate non-transferable license, so the `SO(2)` route uses
