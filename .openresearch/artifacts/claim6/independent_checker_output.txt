@@ -1,0 +1,1 @@
+VERIFIED: dense noncommuting SPD RDNGD progresses at n=5,10; relative reference gaps below 0.005%; SPD feasibility passes.

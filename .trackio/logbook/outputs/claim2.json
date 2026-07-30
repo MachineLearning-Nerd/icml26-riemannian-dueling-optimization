@@ -1,0 +1,27 @@
+{
+  "claim": 2,
+  "run_id": "7443fdc4-50fb-4443-8915-f5dc0ab9d5f8",
+  "git_sha": "cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942",
+  "exact_printed_schedule": "epsilon_k = alpha D / 2^(2-k)",
+  "proof_schedule": "epsilon_k = alpha D / 2^(k+2)",
+  "source_mismatch_ratio": "printed/proof = 2^(2k)",
+  "counterexample": {
+    "objective": "f(x)=x^2/2",
+    "domain": "Euclidean R restricted to [-2,2]",
+    "dimension": 1,
+    "L_smooth": 1,
+    "alpha_strongly_convex": 1,
+    "curvature_lower_bound": 0,
+    "target": 0.000001,
+    "phases": 42,
+    "phase_length": 203,
+    "oracle_calls": 17052,
+    "printed_final_gap": 0.00008024201035595924,
+    "proof_consistent_final_gap": 2.25772392384794e-16
+  },
+  "corrected_empirical_control": {
+    "queries_per_phase": {"d4": 1612, "d8": 3220, "d16": 6436},
+    "log2_error_slope_per_phase": {"d4": -1.0028966573543339, "d8": -0.9945544596333411, "d16": -1.0392460009522253}
+  },
+  "status": "FALSIFIED"
+}

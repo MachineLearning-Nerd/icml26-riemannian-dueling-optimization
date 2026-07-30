@@ -1,0 +1,1 @@
+Python 3.12.12; NumPy 2.3.2; SciPy 1.16.1; uv.lock; HF cpu-upgrade; estimated 1 core; allocated 64 logical CPUs; BLAS 1 thread; seeds 20260735 and 20260740; route runtime 53.9964 s.

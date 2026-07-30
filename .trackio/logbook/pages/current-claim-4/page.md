@@ -29,12 +29,14 @@ for the intended reason.
 uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
 ```
 
-The raw evidence was generated with seed 20260729 on HF `cpu-upgrade`
-(64 logical CPUs allocated, BLAS capped at one thread), Python 3.12.12. The
-cumulative baseline suite took 3.124 seconds.
+The raw evidence was generated with seed 20260729 and rerun in cumulative
+run `7443fdc4-50fb-4443-8915-f5dc0ab9d5f8` on HF `cpu-upgrade`
+(64 logical CPUs allocated, BLAS capped at one thread), Python 3.12.12.
 
 - [Raw JSON](../../outputs/current_claim4.json)
 - [Executable independent checker](../../reproduction/verify_claim4.py)
+- [Cumulative independent checker](../../reproduction/verify_claims.py)
+- [Full estimator generator](../../reproduction/verify_claim4_source.py)
 - Source: ar5iv HTML SHA-256 `1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323`,
   anchors `#S3.Thmtheorem1` and `#S3.Thmtheorem2`
 

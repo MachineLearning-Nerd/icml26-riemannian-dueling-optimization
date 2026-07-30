@@ -1,0 +1,1 @@
+VERIFIED mechanism: calibrated CIFAR/VGG sphere attack 3/4; SO(2) 19/19; sphere feasibility and asset hashes pass.

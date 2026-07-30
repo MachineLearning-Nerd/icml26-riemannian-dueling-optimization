@@ -1,0 +1,35 @@
+{
+  "claim": 1,
+  "run_id": "7443fdc4-50fb-4443-8915-f5dc0ab9d5f8",
+  "git_sha": "cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942",
+  "seed_root": 20260729,
+  "selection_rule": "First horizon whose six-seed one-sided 95% calibration upper bound is below 0.9 epsilon; validation uses 20 untouched seeds.",
+  "nonconvex": [
+    {"d": 4, "epsilon": 0.35, "horizon": 32, "upper_95": 0.20788373939000762},
+    {"d": 4, "epsilon": 0.25, "horizon": 32, "upper_95": 0.20788373939000762},
+    {"d": 4, "epsilon": 0.18, "horizon": 64, "upper_95": 0.16346808832756626},
+    {"d": 8, "epsilon": 0.35, "horizon": 32, "upper_95": 0.23456862423374672},
+    {"d": 8, "epsilon": 0.25, "horizon": 32, "upper_95": 0.23456862423374672},
+    {"d": 8, "epsilon": 0.18, "horizon": 128, "upper_95": 0.15193646212479703},
+    {"d": 16, "epsilon": 0.35, "horizon": 32, "upper_95": 0.2716517699435528},
+    {"d": 16, "epsilon": 0.25, "horizon": 128, "upper_95": 0.19397224163677979},
+    {"d": 16, "epsilon": 0.18, "horizon": 256, "upper_95": 0.14902614886714272}
+  ],
+  "convex": [
+    {"d": 4, "epsilon": 0.08, "horizon": 256, "upper_95": 0.000038491242034856134},
+    {"d": 4, "epsilon": 0.04, "horizon": 256, "upper_95": 0.0016911917602844156},
+    {"d": 4, "epsilon": 0.02, "horizon": 512, "upper_95": 0.000007043095867628343},
+    {"d": 8, "epsilon": 0.08, "horizon": 512, "upper_95": 0.00008006714630080566},
+    {"d": 8, "epsilon": 0.04, "horizon": 512, "upper_95": 0.004654743179486073},
+    {"d": 8, "epsilon": 0.02, "horizon": 1024, "upper_95": 0.00001475128561582583},
+    {"d": 16, "epsilon": 0.08, "horizon": 1024, "upper_95": 0.00013679941272186417},
+    {"d": 16, "epsilon": 0.04, "horizon": 1024, "upper_95": 0.006052876312324618},
+    {"d": 16, "epsilon": 0.02, "horizon": 2048, "upper_95": 0.00003096540537859268}
+  ],
+  "negative_controls": {
+    "discard_comparisons_gradient_norm": 0.31200839066853614,
+    "reverse_convex_suboptimality": 1.125
+  },
+  "symbolic_certificate": "Nonconvex: T >= L^2 d (D+1)^2/(C_hat^2 epsilon^2); convex: T >= 1 + 16 pi d L zeta D/epsilon.",
+  "status": "VERIFIED"
+}

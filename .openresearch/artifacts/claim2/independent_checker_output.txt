@@ -1,0 +1,1 @@
+FALSIFIED: printed final gap 8.024201e-5 exceeds 1e-6; proof-consistent control reaches 2.257724e-16.

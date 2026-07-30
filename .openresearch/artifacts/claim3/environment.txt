@@ -1,0 +1,1 @@
+Python 3.12.12; uv.lock; HF cpu-upgrade; estimated 8 cores; allocated 64 logical CPUs; BLAS 1 thread; seed root 20260729; cumulative runtime 266.7914 s.

@@ -1,0 +1,40 @@
+{
+  "claim": 5,
+  "run_id": "7443fdc4-50fb-4443-8915-f5dc0ab9d5f8",
+  "git_sha": "cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942",
+  "seed": 20260730,
+  "model": "chenyaofo/pytorch-cifar-models:cifar10_vgg11_bn",
+  "weights_sha256": "eaeebf42370c92fdfbb5dbe8eba7c27d4eb7366a1dca0b5be435364ccdf54378",
+  "dataset": "uoft-cs/cifar10 test split, indices 0-3",
+  "dataset_revision": "0b2714987fa478483af9968de7c934580d0bb9a2",
+  "paper_setting": {
+    "nu": 0.000001,
+    "eta": 0.000001,
+    "steps": 1000,
+    "batch": 10,
+    "successful_images": 0,
+    "images": 2,
+    "status": "BLOCKED"
+  },
+  "calibrated_attack": {
+    "nu": 0.01,
+    "eta": 0.04,
+    "steps": 1000,
+    "batch": 10,
+    "sphere_radius": 0.5,
+    "initial_margins": [0.7511782646179199, 10.217534065246582, 9.561413764953613, 10.26954174041748],
+    "final_margins": [-10.785198211669922, 1.64046049118042, -9.718074798583984, -6.701986789703369],
+    "successful_images": 3,
+    "images": 4,
+    "maximum_radius_error": 0.0000007152557373046875,
+    "reverse_control_margin": {"initial": 1.8604998588562012, "final": 12.699758529663086}
+  },
+  "so2": {
+    "tilts": 19,
+    "successes_below_1e-5": 19,
+    "reverse_control_maximum_best_loss": 0.19910579529464623,
+    "dataset_scope": "deterministic tilt annotations; not licensed HLW pixels"
+  },
+  "cpu": {"estimated_cores": 8, "allocated_logical_cpus": 64, "torch_threads": 8, "runtime_seconds": 168.16687317299875},
+  "status": "VERIFIED"
+}

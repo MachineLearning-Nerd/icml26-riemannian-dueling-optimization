@@ -1,0 +1,1 @@
+Python 3.12.12; torch 2.7.1+cpu; uv.lock; HF cpu-upgrade; estimated 8 cores; allocated 64 logical CPUs; torch 8 threads; seed 20260730; route runtime 168.1669 s.
