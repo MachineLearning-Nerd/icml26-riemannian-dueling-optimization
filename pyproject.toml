@@ -1,0 +1,22 @@
+[project]
+name = "riemannian-dueling-reproduction"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "marimo>=0.15,<1",
+  "matplotlib>=3.10,<4",
+  "numpy>=2.2,<3",
+  "pillow>=11,<12",
+  "scipy>=1.15,<2",
+  "torch>=2.7,<2.8",
+  "torchvision>=0.22,<0.23",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }

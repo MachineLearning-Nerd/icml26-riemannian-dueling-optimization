@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import json
 import math
+import os
+import platform
+import time
 from pathlib import Path
+
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 import numpy as np
 
@@ -88,6 +93,15 @@ def so2_check():
 
 
 def main():
+    started = time.perf_counter()
+    print(json.dumps({
+        "run_metadata": {
+            "actual_logical_cpus": os.cpu_count(),
+            "python": platform.python_version(),
+            "platform": platform.platform(),
+            "openblas_num_threads": os.environ["OPENBLAS_NUM_THREADS"],
+        }
+    }, sort_keys=True))
     rng = np.random.default_rng(20260729)
     schedules = schedule_checks()
     est = estimator_check(rng)
@@ -109,7 +123,11 @@ def main():
     }
     verdict = {"paper": "nDfDnsyllY", "arxiv": "2603.00023", "source_sha256": SOURCE_SHA, "claims": claims, "verified_claim_count": sum(c["passed"] for c in claims.values()), "all_target_claims_passed": all(claims[k]["passed"] for k in ("C1","C2","C3","C4","C6")), "scope": "five source-complete CPU constructions; C5 explicitly unsupported rather than proxied."}
     root = Path(__file__).resolve().parents[2]; out=root/'outputs'/'verdict.json'; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps(verdict,indent=2,sort_keys=True)+'\n')
-    print(json.dumps({"verified_claim_count": verdict["verified_claim_count"], "all_target_claims_passed": verdict["all_target_claims_passed"]},sort_keys=True))
+    print(json.dumps({
+        "verified_claim_count": verdict["verified_claim_count"],
+        "all_target_claims_passed": verdict["all_target_claims_passed"],
+        "runtime_seconds": time.perf_counter() - started,
+    }, sort_keys=True))
     if not verdict["all_target_claims_passed"]: raise SystemExit(1)
 
 if __name__ == '__main__': main()
