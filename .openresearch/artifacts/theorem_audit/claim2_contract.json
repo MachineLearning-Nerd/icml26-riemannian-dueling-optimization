@@ -1,0 +1,15 @@
+{
+  "claim_id": 2,
+  "exact_claim": "RRDNGD returns an epsilon-optimal point for any epsilon>0 under Theorem 3.10 assumptions with O(d log(1/epsilon)) oracle complexity.",
+  "counterexample": {
+    "X": "[-2,2]",
+    "f": "x^2/2",
+    "x0": 1,
+    "d": 1,
+    "L": 1,
+    "alpha": 1,
+    "kappa": 0,
+    "target_epsilon": 1e-6
+  },
+  "falsification_rule": "The literal printed schedule must finish above epsilon while the identical proof-consistent schedule finishes at or below epsilon."
+}

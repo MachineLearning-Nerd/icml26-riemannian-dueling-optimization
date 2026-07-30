@@ -15,6 +15,7 @@ import numpy as np
 
 from verify_claim4 import verify as verify_claim4
 from empirical_algorithms import verify as verify_empirical_algorithms
+from theorem_audit import verify as verify_theorems
 
 SOURCE_SHA = "1df1a267c036a4ef161c02719c4b88bb4cb321099d10b5ac3485a97a51e1a71d"
 
@@ -128,6 +129,7 @@ def main():
     root = Path(__file__).resolve().parents[2]; out=root/'outputs'/'verdict.json'; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps(verdict,indent=2,sort_keys=True)+'\n')
     verify_claim4()
     verify_empirical_algorithms()
+    verify_theorems()
     print(json.dumps({
         "verified_claim_count": verdict["verified_claim_count"],
         "all_target_claims_passed": verdict["all_target_claims_passed"],
