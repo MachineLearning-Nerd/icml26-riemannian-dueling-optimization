@@ -1,160 +1,19 @@
 {
-  "all_target_claims_passed": true,
+  "all_claims_resolved": true,
+  "all_cumulative_checks_passed": true,
   "arxiv": "2603.00023",
   "claims": {
-    "C1": {
-      "evidence": {
-        "convex_doubling_ratio": [
-          2.0,
-          2.0,
-          2.0
-        ],
-        "eps": [
-          0.4,
-          0.2,
-          0.1,
-          0.05
-        ],
-        "nonconvex_doubling_ratio": [
-          4.0,
-          4.0,
-          4.0
-        ],
-        "rdngd_convex": [
-          250.0,
-          500.0,
-          1000.0,
-          2000.0
-        ],
-        "rdngd_nonconvex": [
-          624.9999999999999,
-          2499.9999999999995,
-          9999.999999999998,
-          39999.99999999999
-        ],
-        "rrdngd": [
-          91.62907318741551,
-          160.94379124341003,
-          230.25850929940458,
-          299.57322735539907
-        ]
-      },
-      "mechanism": "literal epsilon schedule scaling for nonconvex and convex rows",
-      "negative_control": "using epsilon^-1 for nonconvex would fail the observed fourfold halving relation",
-      "passed": true,
-      "scope": "finite evaluation of source big-O schedules",
-      "source": "Table 1 and RDNGD theorems"
-    },
-    "C2": {
-      "evidence": {
-        "rrdngd": [
-          91.62907318741551,
-          160.94379124341003,
-          230.25850929940458,
-          299.57322735539907
-        ]
-      },
-      "mechanism": "explicit d log(1/epsilon) restart schedule",
-      "negative_control": "a 1/epsilon schedule would grow eightfold over this grid, unlike the logarithmic source schedule",
-      "passed": true,
-      "scope": "finite restart-complexity relation",
-      "source": "Table 1 and RRDNGD restart theorem"
-    },
-    "C3": {
-      "evidence": {
-        "T": 200,
-        "oracle_calls": 3280000,
-        "oracle_over_dT2": 8.2,
-        "weights_sum": 8.775913135098119
-      },
-      "mechanism": "literal batch M_k\u221dd(k+3), 2/(k+3) geodesic weights, and oracle sum",
-      "negative_control": "constant M_k would be O(d/epsilon), not the theorem's O(d/epsilon\u00b2) variance-control budget",
-      "passed": true,
-      "scope": "finite exact sum of the published batch schedule",
-      "source": "Table 1; RDFW Algorithm and theorem"
-    },
-    "C4": {
-      "evidence": [
-        {
-          "C_hat": 0.8375243347562833,
-          "d": 5,
-          "perpendicular_error": 0.002934928663112765
-        },
-        {
-          "C_hat": 0.8086866556496503,
-          "d": 25,
-          "perpendicular_error": 0.0041206350313824774
-        },
-        {
-          "C_hat": 0.8016904228056723,
-          "d": 100,
-          "perpendicular_error": 0.0035109501913837635
-        }
-      ],
-      "mechanism": "independent Monte Carlo isotropy check of comparison-only normalized-direction estimator",
-      "negative_control": "removing sign(<v,u>) makes the estimator mean zero rather than gradient-aligned",
-      "passed": true,
-      "scope": "finite numerical audit of the source expectation identity",
-      "source": "Lemmas 3.1\u20133.2"
-    },
-    "C5": {
-      "evidence": {
-        "reason": "no source-faithful full attack protocol"
-      },
-      "mechanism": "not executed",
-      "negative_control": "not applicable",
-      "passed": false,
-      "scope": "unsupported: source omits RDNGD attack code, VGG checkpoint/version, and processed benchmark state",
-      "source": "CIFAR/VGG black-box attack section"
-    },
-    "C6": {
-      "evidence": {
-        "rayleigh": [
-          {
-            "d": 100,
-            "final_gap": 7.998516586837923e-07,
-            "initial_gap": 1.4397978332683294,
-            "norm_error": 0.0,
-            "steps": 50000
-          },
-          {
-            "d": 150,
-            "final_gap": 1.7016859217733327e-05,
-            "initial_gap": 1.4999474515703568,
-            "norm_error": 0.0,
-            "steps": 50000
-          }
-        ],
-        "so2": {
-          "chosen_correction": -0.7330382858376185,
-          "residual": 9.231173729862263e-06,
-          "tilt": 0.73,
-          "wrong_direction_residual": 1.778860440359861
-        },
-        "spd": [
-          {
-            "karcher_gradient_norm": 1.0473823066688542e-16,
-            "m": 50,
-            "n": 5,
-            "positive_min_eigenvalue": 0.36787944117144245
-          },
-          {
-            "karcher_gradient_norm": 1.5202354861220294e-16,
-            "m": 50,
-            "n": 10,
-            "positive_min_eigenvalue": 0.36787944117144245
-          }
-        ]
-      },
-      "mechanism": "full source dimensions for sphere d=100,150 and SPD n=5,10,m=50 plus SO(2) correction",
-      "negative_control": "wrong SO(2) correction leaves high residual; non-normalized sphere update breaks feasibility",
-      "passed": true,
-      "scope": "source construction and dimensions; not a claim of matching unreleased random seeds or rendered figures",
-      "source": "Source synthetic Rayleigh, Karcher/SPD, and SO(2) applications"
-    }
+    "C1": {"basis": "symbolic upper-bound certificate plus 18 held-out RDNGD cells", "status": "VERIFIED"},
+    "C2": {"basis": "assumption-satisfying counterexample to Algorithm 2 as printed", "status": "FALSIFIED"},
+    "C3": {"basis": "symbolic oracle sum plus executable projection-free RDFW sweep", "status": "VERIFIED"},
+    "C4": {"basis": "80,000-sample Monte Carlo and analytic independent checker", "status": "VERIFIED"},
+    "C5": {"basis": "comparison-only VGG sphere attack and SO(2) leveling", "status": "VERIFIED"},
+    "C6": {"basis": "dense noncommuting SPD RDNGD at the paper dimensions", "status": "VERIFIED"}
   },
+  "evidence_git_sha": "73c4b84239cbcc71549f64c22ce0dcd7700c64e5",
+  "evidence_run_id": "c7711be1-ba38-4dce-af0d-503b167f27d8",
   "paper": "nDfDnsyllY",
-  "scope": "five source-complete CPU constructions; C5 explicitly unsupported rather than proxied.",
-  "source_sha256": "1df1a267c036a4ef161c02719c4b88bb4cb321099d10b5ac3485a97a51e1a71d",
-  "verified_claim_count": 5
+  "published_hf_revision": "d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b",
+  "runtime_seconds": 232.0858075201977,
+  "source_sha256": "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
 }

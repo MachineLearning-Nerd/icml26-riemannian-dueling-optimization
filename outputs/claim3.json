@@ -1,0 +1,27 @@
+{
+  "claim": 3,
+  "run_id": "7443fdc4-50fb-4443-8915-f5dc0ab9d5f8",
+  "git_sha": "cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942",
+  "dimensions": [3, 7, 15],
+  "horizons": [10, 20, 40, 80],
+  "loglog_slopes": {
+    "d3": {"error_vs_horizon": -0.24970891811075355, "queries_vs_horizon": 1.8349997580953867},
+    "d7": {"error_vs_horizon": -2.0179731584158622, "queries_vs_horizon": 1.8353564700543588},
+    "d15": {"error_vs_horizon": -1.89012769656896, "queries_vs_horizon": 1.8354782990990284}
+  },
+  "d15_rows": [
+    {"horizon": 10, "median_oracle_calls": 54706, "median_suboptimality": 0.018599683330632527},
+    {"horizon": 20, "median_oracle_calls": 182340, "median_suboptimality": 0.005578161016472704},
+    {"horizon": 40, "median_oracle_calls": 656392, "median_suboptimality": 0.0013974581504225718},
+    {"horizon": 80, "median_oracle_calls": 2479636, "median_suboptimality": 0.0003743454173288826}
+  ],
+  "negative_control": {
+    "kind": "reversed comparison signs",
+    "d": 15,
+    "horizon": 80,
+    "suboptimality": 0.5327893777477224
+  },
+  "projection_calls": 0,
+  "symbolic_certificate": "sum 2 M_k = T a d (T+5), so T=O(1/epsilon) yields O(d/epsilon^2) comparisons.",
+  "status": "VERIFIED"
+}

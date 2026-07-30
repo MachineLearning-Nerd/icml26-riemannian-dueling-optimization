@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Riemannian Dueling Optimization",
+  "emoji": "🎯",
+  "space_id": "DineshAI/nDfDnsyllY",
+  "paper": "2603.00023",
+  "tags": ["icml2026-repro", "paper-nDfDnsyllY"],
+  "updated_at": "2026-07-30T19:00:00+00:00",
+  "root": {
+    "slug": "current-verification",
+    "title": "Current verification",
+    "file": "pages/current-verification/page.md",
+    "children": [
+      {"slug": "current-claim-1", "title": "Claim 1 — RDNGD complexity", "file": "pages/current-claim-1/page.md", "children": []},
+      {"slug": "current-claim-2", "title": "Claim 2 — RRDNGD counterexample", "file": "pages/current-claim-2/page.md", "children": []},
+      {"slug": "current-claim-3", "title": "Claim 3 — RDFW", "file": "pages/current-claim-3/page.md", "children": []},
+      {"slug": "current-claim-4", "title": "Claim 4 — comparison estimator", "file": "pages/current-claim-4/page.md", "children": []},
+      {"slug": "current-claim-5", "title": "Claim 5 — real-world applications", "file": "pages/current-claim-5/page.md", "children": []},
+      {"slug": "current-claim-6", "title": "Claim 6 — sphere and dense SPD", "file": "pages/current-claim-6/page.md", "children": []},
+      {"slug": "visibility-matrix", "title": "Evaluator visibility matrix", "file": "pages/visibility-matrix/page.md", "children": []},
+      {
+        "slug": "historical-rejected-baseline",
+        "title": "Historical rejected baseline",
+        "file": "pages/index.md",
+        "children": [
+          {"slug": "claim-1-rdngd", "title": "Claim 1 — RDNGD", "file": "pages/claim-1-rdngd/page.md", "children": []},
+          {"slug": "claim-2-rrdngd", "title": "Claim 2 — RRDNGD", "file": "pages/claim-2-rrdngd/page.md", "children": []},
+          {"slug": "claim-3-rdfw", "title": "Claim 3 — RDFW", "file": "pages/claim-3-rdfw/page.md", "children": []},
+          {"slug": "claim-4-comparison-estimator", "title": "Claim 4 — Comparison estimator", "file": "pages/claim-4-comparison-estimator/page.md", "children": []},
+          {"slug": "claim-5-cifar-attack", "title": "Claim 5 — CIFAR attack", "file": "pages/claim-5-cifar-attack/page.md", "children": []},
+          {"slug": "claim-6-synthetic-manifolds", "title": "Claim 6 — Synthetic manifolds", "file": "pages/claim-6-synthetic-manifolds/page.md", "children": []},
+          {"slug": "methods", "title": "Methods", "file": "pages/methods/page.md", "children": []},
+          {"slug": "negative-controls", "title": "Negative controls", "file": "pages/negative-controls/page.md", "children": []},
+          {"slug": "conclusion", "title": "Conclusion", "file": "pages/conclusion/page.md", "children": []}
+        ]
+      }
+    ]
+  },
+  "revision": "candidate-2026-07-30"
+}
