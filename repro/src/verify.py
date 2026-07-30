@@ -15,9 +15,10 @@ import numpy as np
 
 from verify_claim4 import verify as verify_claim4
 from empirical_algorithms import verify as verify_empirical_algorithms
+from dense_spd import verify as verify_dense_spd
 from theorem_audit import verify as verify_theorems
 
-SOURCE_SHA = "1df1a267c036a4ef161c02719c4b88bb4cb321099d10b5ac3485a97a51e1a71d"
+SOURCE_SHA = "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
 
 
 def schedule_checks():
@@ -130,6 +131,7 @@ def main():
     verify_claim4()
     verify_empirical_algorithms()
     verify_theorems()
+    verify_dense_spd()
     print(json.dumps({
         "verified_claim_count": verdict["verified_claim_count"],
         "all_target_claims_passed": verdict["all_target_claims_passed"],

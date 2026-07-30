@@ -1,0 +1,13 @@
+{
+  "claim": 6,
+  "paper": "2603.00023",
+  "status_if_all_checks_pass": "VERIFIED",
+  "required_checks": [
+    "Run comparison-only RDNGD on dense noncommuting SPD inputs at n=5,10 and m=50",
+    "Decrease the affine-invariant Karcher objective by at least 1%",
+    "Finish within 0.5% relative objective gap of an independent fixed-point reference",
+    "Preserve positive definiteness",
+    "Make reversed comparison signs increase the objective"
+  ],
+  "universal_scope": false
+}
