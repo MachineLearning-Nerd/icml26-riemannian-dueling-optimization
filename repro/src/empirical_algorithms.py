@@ -40,7 +40,12 @@ def sphere_exp(x: np.ndarray, tangent: np.ndarray) -> np.ndarray:
 
 
 def nonconvex_rdngd(
-    d: int, epsilon: float, horizon: int, seed: int, reverse: bool = False
+    d: int,
+    epsilon: float,
+    horizon: int,
+    seed: int,
+    reverse: bool = False,
+    frozen: bool = False,
 ) -> dict:
     rng = np.random.default_rng(seed)
     eigenvalues = np.linspace(0.0, 1.0, d)
@@ -64,7 +69,8 @@ def nonconvex_rdngd(
         oracle = 1.0 if f_plus > f_minus else -1.0
         if reverse:
             oracle *= -1
-        x = sphere_exp(x, -eta * oracle * u)
+        if not frozen:
+            x = sphere_exp(x, -eta * oracle * u)
     return {
         "d": manifold_d,
         "ambient_d": d,
@@ -77,6 +83,7 @@ def nonconvex_rdngd(
         "final_gradient_norm": gradient_norms[-1],
         "oracle_calls": 2 * horizon,
         "reverse_oracle": reverse,
+        "frozen_iterate": frozen,
         "norm_error": abs(float(x @ x) - 1),
     }
 
@@ -233,7 +240,7 @@ def calibrate_rdngd() -> dict:
             )
 
     nonconvex_control = nonconvex_rdngd(
-        17, 0.18, 4096, SEED + 900001, reverse=True
+        17, 0.18, 4096, SEED + 900001, frozen=True
     )
     convex_control = convex_rdngd(
         16, 0.02, 4096, SEED + 900002, reverse=True
@@ -247,7 +254,7 @@ def calibrate_rdngd() -> dict:
         "convex_calibration": convex_calibration,
         "convex_selected": convex_selected,
         "controls": {
-            "reversed_nonconvex_oracle": nonconvex_control,
+            "discarded_comparisons_nonconvex": nonconvex_control,
             "reversed_convex_oracle": convex_control,
         },
     }
@@ -472,7 +479,7 @@ def verify() -> dict:
         row["validation_upper_95"] < row["epsilon"]
         for row in rdngd["convex_selected"]
     )
-    assert rdngd["controls"]["reversed_nonconvex_oracle"][
+    assert rdngd["controls"]["discarded_comparisons_nonconvex"][
         "mean_random_iterate_gradient_norm"
     ] > 0.18
     assert rdngd["controls"]["reversed_convex_oracle"][
