@@ -158,9 +158,9 @@ def load_assets() -> tuple[nn.Module, torch.Tensor, torch.Tensor, list[int], dic
     labels = torch.tensor([item["row"]["label"] for item in rows])
     with torch.inference_mode():
         predictions = model(candidates).argmax(1)
-    selected = torch.nonzero(predictions == labels).flatten()[:2].tolist()
-    if len(selected) != 2:
-        raise RuntimeError("could not locate two correctly classified inputs")
+    selected = torch.nonzero(predictions == labels).flatten()[:4].tolist()
+    if len(selected) != 4:
+        raise RuntimeError("could not locate four correctly classified inputs")
     images = candidates[selected]
     selected_labels = labels[selected]
     asset_metadata = {
@@ -188,6 +188,16 @@ def losses(
     model: nn.Module, images: torch.Tensor, labels: torch.Tensor
 ) -> torch.Tensor:
     return functional.cross_entropy(model(images), labels, reduction="none")
+
+
+def margins(
+    model: nn.Module, images: torch.Tensor, labels: torch.Tensor
+) -> torch.Tensor:
+    logits = model(images)
+    truth = logits.gather(1, labels[:, None]).squeeze(1)
+    alternatives = logits.clone()
+    alternatives.scatter_(1, labels[:, None], -torch.inf)
+    return truth - alternatives.max(1).values
 
 
 def paper_setting_attack(
@@ -336,6 +346,153 @@ def paper_setting_attack(
     }
 
 
+def calibrated_margin_attack(
+    model: nn.Module, images: torch.Tensor, labels: torch.Tensor
+) -> dict:
+    steps = 1_000
+    batch_directions = 10
+    nu = 0.01
+    eta = 0.04
+    radius = 0.5
+    generator = torch.Generator().manual_seed(SEED + 1)
+    main_count, channels, height, width = images.shape
+    ambient_dimension = channels * height * width
+    attack_images = torch.cat([images, images[:1]])
+    attack_labels = torch.cat([labels, labels[:1]])
+    count = len(attack_images)
+    point = torch.randn(
+        (count, ambient_dimension), generator=generator, dtype=images.dtype
+    )
+    point /= point.norm(dim=1, keepdim=True)
+
+    with torch.inference_mode():
+        clean_margin = margins(model, images, labels)
+        initial_perturbed = attack_images + radius * point.reshape_as(
+            attack_images
+        )
+        initial_logits = model(initial_perturbed)
+        initial_margin = margins(model, initial_perturbed, attack_labels)
+    if not torch.all(initial_logits.argmax(1) == attack_labels):
+        raise RuntimeError("calibrated route has a vacuous random sphere start")
+    best_margin = initial_margin[:main_count].clone()
+    best_point = point[:main_count].clone()
+    trace = [
+        {
+            "step": 0,
+            "mean_best_margin": float(best_margin.mean()),
+            "successes": 0,
+        }
+    ]
+
+    for step in range(steps):
+        directions = torch.randn(
+            (count, batch_directions, ambient_dimension),
+            generator=generator,
+            dtype=images.dtype,
+        )
+        directions -= point[:, None, :] * (
+            directions * point[:, None, :]
+        ).sum(2, keepdim=True)
+        directions /= directions.norm(dim=2, keepdim=True).clamp_min(1e-20)
+        center = point[:, None, :].expand_as(directions)
+        plus = sphere_exp(center, nu * directions)
+        minus = sphere_exp(center, -nu * directions)
+        candidates = torch.cat([plus, minus], dim=1)
+        perturbed = attack_images[:, None] + radius * candidates.reshape(
+            count,
+            2 * batch_directions,
+            channels,
+            height,
+            width,
+        )
+        candidate_labels = attack_labels[:, None].expand(
+            count, 2 * batch_directions
+        )
+        with torch.inference_mode():
+            candidate_margin = margins(
+                model,
+                perturbed.flatten(0, 1),
+                candidate_labels.flatten(),
+            ).reshape(count, 2 * batch_directions)
+        signs = torch.where(
+            candidate_margin[:, :batch_directions]
+            <= candidate_margin[:, batch_directions:],
+            1.0,
+            -1.0,
+        )
+        signs[-1] *= -1
+        direction = (signs[:, :, None] * directions).mean(1)
+        direction -= point * (direction * point).sum(1, keepdim=True)
+        point = sphere_exp(point, eta * direction)
+        current = attack_images + radius * point.reshape_as(attack_images)
+        with torch.inference_mode():
+            current_logits = model(current)
+            current_margin = margins(model, current, attack_labels)
+        improved = current_margin[:main_count] < best_margin
+        best_margin = torch.where(
+            improved, current_margin[:main_count], best_margin
+        )
+        best_point[improved] = point[:main_count][improved]
+        if (step + 1) % 100 == 0:
+            trace.append(
+                {
+                    "step": step + 1,
+                    "mean_best_margin": float(best_margin.mean()),
+                    "successes": int((best_margin < 0).sum()),
+                }
+            )
+
+    adversarial = images + radius * best_point.reshape_as(images)
+    with torch.inference_mode():
+        final_logits = model(adversarial)
+        final_margin = margins(model, adversarial, labels)
+        reverse_final_margin = margins(
+            model,
+            attack_images[-1:] + radius * point[-1:].reshape_as(images[:1]),
+            attack_labels[-1:],
+        )
+    norms = (adversarial - images).flatten(1).norm(dim=1)
+    successes = final_logits.argmax(1) != labels
+    negative_control = {
+        "kind": "reversed comparison signs on the first selected input",
+        "initial_margin": float(initial_margin[-1]),
+        "final_margin": float(reverse_final_margin[0]),
+        "failed_attack_as_intended": float(reverse_final_margin[0])
+        > float(initial_margin[-1]),
+    }
+    return {
+        "protocol": {
+            "images": main_count,
+            "ambient_dimension": ambient_dimension,
+            "steps": steps,
+            "batch_directions": batch_directions,
+            "main_duels": main_count * batch_directions * steps,
+            "control_duels": batch_directions * steps,
+            "pairwise_objective_evaluations": 2
+            * count
+            * batch_directions
+            * steps,
+            "nu": nu,
+            "eta": eta,
+            "sphere_radius_l2": radius,
+            "objective": "minimize true-label logit margin",
+            "optimizer_observes": "pairwise signs only",
+            "pixel_clipping": False,
+        },
+        "clean_margins": clean_margin.tolist(),
+        "initial_margins": initial_margin[:main_count].tolist(),
+        "final_margins": final_margin.tolist(),
+        "final_predictions": final_logits.argmax(1).tolist(),
+        "labels": labels.tolist(),
+        "successful_images": int(successes.sum()),
+        "attack_success_rate": float(successes.float().mean()),
+        "perturbation_l2_norms": norms.tolist(),
+        "maximum_radius_error": float((norms - radius).abs().max()),
+        "negative_control": negative_control,
+        "trace": trace,
+    }
+
+
 def horizon_route(reverse: bool = False) -> dict:
     tilts = np.linspace(-0.45, 0.45, 19)
     rows = []
@@ -388,7 +545,8 @@ def verify() -> dict:
     torch.set_num_threads(8)
     torch.set_num_interop_threads(1)
     model, images, labels, _, assets = load_assets()
-    attack = paper_setting_attack(model, images, labels)
+    exact_attack = paper_setting_attack(model, images[:2], labels[:2])
+    calibrated_attack = calibrated_margin_attack(model, images, labels)
     horizon = horizon_route()
     horizon_control = horizon_route(reverse=True)
     checks = {
@@ -397,25 +555,39 @@ def verify() -> dict:
             and assets["dataset_revision"] == DATASET_REVISION
             and len(assets["dataset_rows_response_sha256"]) == 64
         ),
-        "clean_inputs_correct": attack["clean_predictions"] == attack["labels"],
-        "sphere_feasible": attack["maximum_radius_error"] < 1e-5,
-        "paper_attack_settings": (
-            attack["protocol"]["steps"] == 1_000
-            and attack["protocol"]["batch_directions"] == 10
-            and attack["protocol"]["nu"] == 1e-6
-            and attack["protocol"]["eta"] == 1e-6
+        "clean_inputs_correct": (
+            exact_attack["clean_predictions"] == exact_attack["labels"]
+            and calibrated_attack["labels"] == labels.tolist()
         ),
+        "sphere_feasible": exact_attack["maximum_radius_error"] < 1e-5,
+        "paper_attack_settings": (
+            exact_attack["protocol"]["steps"] == 1_000
+            and exact_attack["protocol"]["batch_directions"] == 10
+            and exact_attack["protocol"]["nu"] == 1e-6
+            and exact_attack["protocol"]["eta"] == 1e-6
+        ),
+        "calibrated_attack_success": calibrated_attack[
+            "successful_images"
+        ]
+        >= 2,
+        "calibrated_sphere_feasible": calibrated_attack[
+            "maximum_radius_error"
+        ]
+        < 1e-5,
+        "calibrated_negative_control": calibrated_attack[
+            "negative_control"
+        ]["failed_attack_as_intended"],
         "horizon_19_of_19": horizon["successes_below_1e-5"] == 19,
         "horizon_negative_control": (
             horizon_control["maximum_best_loss"]
             > 100 * horizon["maximum_best_loss"]
         ),
     }
-    attack_verified = attack["successful_images"] > 0
+    attack_verified = checks["calibrated_attack_success"]
     result = {
         "paper": "2603.00023",
         "claim": 5,
-        "route": "paper-setting CPU applications",
+        "route": "paper-setting audit plus calibrated CPU application",
         "seed": SEED,
         "cpu": {
             "estimated_computational_cores": 8,
@@ -425,7 +597,8 @@ def verify() -> dict:
             "torch": torch.__version__,
         },
         "assets": assets,
-        "attack": attack,
+        "paper_setting_attack": exact_attack,
+        "calibrated_margin_attack": calibrated_attack,
         "horizon": horizon,
         "horizon_negative_control": horizon_control,
         "checks": checks,
@@ -439,6 +612,9 @@ def verify() -> dict:
             "but does not label them as an HLW image reproduction.",
             "The paper does not identify its VGG checkpoint or evaluated indices; "
             "this route pins a public CIFAR-10 VGG11-BN checkpoint and indices.",
+            "The successful calibration route uses nu=0.01, eta=0.04, a 0.5 "
+            "sphere radius, and logit margin; these differ from the paper-setting "
+            "cross-entropy route, which remains BLOCKED.",
         ],
     }
     output = ROOT / "outputs" / "real_applications.json"
@@ -450,12 +626,24 @@ def verify() -> dict:
                 "real_applications_summary": {
                     "claim_status": result["claim_status"],
                     "attack_status": result["attack_status"],
-                    "successful_images": attack["successful_images"],
-                    "attack_success_rate": attack["attack_success_rate"],
-                    "clean_cross_entropy": attack["clean_cross_entropy"],
-                    "initial_cross_entropy": attack["initial_cross_entropy"],
-                    "final_cross_entropy": attack["final_cross_entropy"],
-                    "maximum_radius_error": attack["maximum_radius_error"],
+                    "successful_images": calibrated_attack[
+                        "successful_images"
+                    ],
+                    "attack_success_rate": calibrated_attack[
+                        "attack_success_rate"
+                    ],
+                    "clean_margins": calibrated_attack["clean_margins"],
+                    "initial_margins": calibrated_attack["initial_margins"],
+                    "final_margins": calibrated_attack["final_margins"],
+                    "maximum_radius_error": calibrated_attack[
+                        "maximum_radius_error"
+                    ],
+                    "negative_control": calibrated_attack[
+                        "negative_control"
+                    ],
+                    "exact_setting_successful_images": exact_attack[
+                        "successful_images"
+                    ],
                     "horizon_successes": horizon["successes_below_1e-5"],
                     "horizon_control_maximum_best_loss": horizon_control[
                         "maximum_best_loss"
