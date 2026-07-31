@@ -16,6 +16,7 @@ outputs/claim6.json
 reproduction/verify_claims.py
 reproduction/verify_claim4.py
 reproduction/dense_spd.py
+reproduction/sphere_rayleigh.py
 reproduction/empirical_algorithms.py
 reproduction/real_applications.py
 reproduction/theorem_audit.py

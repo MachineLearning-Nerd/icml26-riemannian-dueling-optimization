@@ -14,6 +14,7 @@ ALLOWLIST = (
 ).read_text().splitlines()
 SOURCE_MAP = {
     "reproduction/dense_spd.py": ROOT / "repro/src/dense_spd.py",
+    "reproduction/sphere_rayleigh.py": ROOT / "repro/src/sphere_rayleigh.py",
     "reproduction/empirical_algorithms.py": ROOT / "repro/src/empirical_algorithms.py",
     "reproduction/real_applications.py": ROOT / "repro/src/real_applications.py",
     "reproduction/theorem_audit.py": ROOT / "repro/src/theorem_audit.py",

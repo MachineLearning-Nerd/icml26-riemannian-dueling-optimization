@@ -10,8 +10,8 @@ fixed command, environment, CPU/runtime, limitations, and links below.
 | 2 | [Claim 2](#/current-claim-2) | RRDNGD + counterexample | yes | `outputs/claim2.json` | `verify_claims.py` | printed vs Appendix-F schedules | yes | VERIFIED intended; printed defect FALSIFIED |
 | 3 | [Claim 3](#/current-claim-3) | RDFW + certificate | yes | `outputs/claim3.json` | `verify_claims.py` | reversed signs | yes | VERIFIED |
 | 4 | [Claim 4](#/current-claim-4) | Lemma 3.1 sweep + ideal estimator | yes | `outputs/current_claim4.json` | two checkers | tightened bound, sign-blind oracle, small-nu, linear, antithetic | yes, both lemmas and the improved constants | VERIFIED |
-| 5 | [Claim 5](#/current-claim-5) | attack + SO(2) | yes | `outputs/claim5.json` | `verify_claims.py` | reversed signs | yes, deviations explicit | VERIFIED mechanism |
-| 6 | [Claim 6](#/current-claim-6) | dense SPD RDNGD | yes | `outputs/claim6.json` | `verify_claims.py` | reversed signs | yes | VERIFIED scope |
+| 5 | [Claim 5](#/current-claim-5) | attack + SO(2) | yes | `outputs/claim5.json` | `verify_claims.py` | reversed signs | yes; paper's own oracle and protocol, deviations explicit | VERIFIED mechanism |
+| 6 | [Claim 6](#/current-claim-6) | sphere Rayleigh + dense SPD RDNGD | yes | `outputs/claim6.json` | `verify_claims.py` | reversed signs on both routes | yes, both named synthetic applications | VERIFIED scope |
 
 ## Red-team traversal
 
@@ -56,7 +56,8 @@ opened exactly these evaluator-reachable files, in traversal order:
 21. `pages/current-claim-6/page.md`
 22. `outputs/claim6.json`
 23. `reproduction/dense_spd.py`
-24. `pages/visibility-matrix/page.md`
+24. `reproduction/sphere_rayleigh.py`
+25. `pages/visibility-matrix/page.md`
 
 Every required claim element and every local link was discoverable. No
 conclusion remained unverifiable. The older pages remain reachable only under

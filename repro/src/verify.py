@@ -15,6 +15,7 @@ from empirical_algorithms import verify as verify_empirical_algorithms
 from finite_nu_estimator import verify as verify_finite_nu_estimator
 from lemma31_perturbation import verify as verify_lemma31
 from real_applications import verify as verify_real_applications
+from sphere_rayleigh import verify as verify_sphere_rayleigh
 from theorem_audit import verify as verify_theorems
 
 if Path(__file__).resolve().parent.name == "reproduction":
@@ -55,6 +56,7 @@ def main() -> None:
     claim4 = verify_claim4()
     empirical = verify_empirical_algorithms()
     theorems = verify_theorems()
+    sphere = verify_sphere_rayleigh()
     claim6 = verify_dense_spd()
     claim5 = verify_real_applications()
 
@@ -115,8 +117,14 @@ def main() -> None:
             "basis": "comparison-only VGG sphere attack and SO(2) leveling",
         },
         "C6": {
-            "status": claim6["status"],
-            "basis": "dense noncommuting SPD RDNGD at the paper dimensions",
+            "status": (
+                claim6["status"] if sphere["status"] == "VERIFIED" else "BLOCKED"
+            ),
+            "basis": (
+                "comparison-only RDNGD on both named synthetic applications: "
+                "sphere Rayleigh quotient at d=100,150 on held-out seeds and "
+                "dense noncommuting SPD Karcher means at the paper dimensions"
+            ),
         },
     }
     allowed = {"VERIFIED", "FALSIFIED", "BLOCKED"}

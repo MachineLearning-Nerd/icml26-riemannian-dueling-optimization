@@ -78,6 +78,7 @@ for opened_file in (
     "reproduction/lemma31_perturbation.py",
     "reproduction/real_applications.py",
     "reproduction/dense_spd.py",
+    "reproduction/sphere_rayleigh.py",
 ):
     assert f"`{opened_file}`" in visibility
 assert "conclusion remained unverifiable" in visibility

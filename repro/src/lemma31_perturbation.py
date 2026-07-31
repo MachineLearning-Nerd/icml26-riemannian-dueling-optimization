@@ -187,9 +187,12 @@ def improved_constants() -> dict:
     saha_lower = 1.0 / 20.0
     exact = []
     for d in (2, 3, 5, 25, 100, 1000):
-        c_hat = math.sqrt(d) * math.exp(
-            math.lgamma(d / 2.0) - math.lgamma((d + 1.0) / 2.0)
-        ) / math.sqrt(math.pi)
+        c_hat = round(
+            math.sqrt(d)
+            * math.exp(math.lgamma(d / 2.0) - math.lgamma((d + 1.0) / 2.0))
+            / math.sqrt(math.pi),
+            12,
+        )
         exact.append(
             {
                 "d": d,

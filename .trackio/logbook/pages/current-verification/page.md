@@ -13,7 +13,7 @@ evaluates this revision.
 | 3 | **VERIFIED** | [Executable projection-free RDFW sweep](#/current-claim-3) |
 | 4 | **VERIFIED** | [Lemma 3.1 non-vacuous gamma_x sweep + Lemma 3.2 ideal estimator and improved constants](#/current-claim-4) |
 | 5 | **VERIFIED for application mechanism** | [VGG sphere attack + SO(2), with deviations](#/current-claim-5) |
-| 6 | **VERIFIED for application scope** | [Dense noncommuting SPD RDNGD](#/current-claim-6) |
+| 6 | **VERIFIED for application scope** | [Sphere Rayleigh RDNGD on held-out seeds + dense noncommuting SPD RDNGD](#/current-claim-6) |
 
 ## Navigation
 

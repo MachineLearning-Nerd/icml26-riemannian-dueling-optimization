@@ -26,8 +26,26 @@ radius `0.05||image||`) changed 0/2 labels and remains **BLOCKED**, not
 falsified. The successful route used `nu=.01`, `eta=.04`, radius `.5`, and
 true-label logit margin.
 
-The exact `SO(2)` optimizer corrected all 19 deterministic tilts below `1e-5`
-in 100 comparison-only steps. Reversed signs left maximum best loss `0.1991`.
+For horizon leveling, the paper minimizes
+`f(R) = ||R R_tilt - I||_F^2` over `SO(2)` and states plainly that, although
+dueling feedback "could be obtained from human comparisons", it uses `f(R)`
+itself as "a scalable and reproducible surrogate for human preference". This
+route therefore uses **the paper's own oracle**, not a substitute for it: the
+comparison returns whichever of two rotations has the smaller `f`, and function
+values are never revealed. The paper's exact protocol `T = 100`, `nu = 1e-6`,
+`eta = 1e-2` is used unchanged.
+
+All 19 tilts were corrected to a best loss of exactly `0.0` (below the `1e-5`
+threshold) in 100 comparison-only steps. Reversing the signs leaves a maximum
+best loss of `0.3982`.
+
+The one deviation is the source of `R_tilt`. HLW (Workman et al., 2016)
+distributes its images *and* its horizon annotations only through a
+per-requester access form at `https://mvrl.cse.wustl.edu/datasets/hlw/`, which
+was verified to be the sole distribution route, so `R_tilt` could not be
+computed from the human annotations. Since `f(R)` depends on `R_tilt` alone and
+on no image pixels, 19 deterministic tilt angles spanning the paper's figure
+range are substituted; every other element of the experiment is the paper's.
 
 **Reproduce.**
 
@@ -49,6 +67,10 @@ Checkpoint SHA-256 begins `eaeebf42`; CIFAR dataset revision
 estimated 8 cores, 64 logical CPUs allocated, PyTorch limited to 8 threads;
 route runtime 1154.28 s.
 
-**Limitations.** The paper does not identify its checkpoint or indices. HLW
-pixels require a separate non-transferable license, so the `SO(2)` route uses
-deterministic tilt annotations and is not labeled an HLW-image reproduction.
+**Limitations.** The paper does not identify its VGG checkpoint or evaluated
+indices, so a pinned public CIFAR-10 VGG11-BN checkpoint and the first four
+correctly-classified test inputs are used. The paper-setting attack route
+(`nu = eta = 1e-6`) remains BLOCKED, not falsified. The `SO(2)` route
+reproduces the paper's objective, oracle and protocol exactly but substitutes
+deterministic tilt angles for HLW's request-gated human annotations, so it is
+not labelled an HLW-image reproduction.
