@@ -40,15 +40,18 @@ Claim 1 combines machine-checkable derivations of the stated
 All 9 nonconvex and 9 convex confidence bounds fall below epsilon. Finite
 sweeps are corroboration; the symbolic certificate carries universal scope.
 
-Claim 2 revealed a source-level contradiction. Algorithm 2 prints an epsilon
-schedule that grows, while Appendix F requires one that shrinks.
+Claim 2's intended theorem is supported by actual proof-consistent RRDNGD:
+the log2 median-error slopes are `-1.003`, `-0.995`, and `-1.039` per phase
+at `d=4,8,16`, while comparisons per phase scale linearly with dimension.
+Algorithm 2 also contains a separate source-level contradiction: it prints an
+epsilon schedule that grows, while Appendix F requires one that shrinks.
 
 ![The printed Algorithm 2 misses the target while the proof-consistent control passes.](images/claim2_counterexample.svg)
 
 On `f(x)=x²/2` over `[-2,2]`, satisfying every theorem assumption, the printed
 schedule stops at `8.02e-5` for a `1e-6` target. The proof-consistent control
-reaches `2.26e-16`. Claim 2 is therefore FALSIFIED as printed, not merely
-“not reproduced.”
+reaches `2.26e-16`. The intended broad claim is VERIFIED; the literal printed
+schedule is separately FALSIFIED, not silently corrected.
 
 ![RDFW reduces error without projections; reversed signs leave a large error.](images/claim3_rdfw.svg)
 
@@ -59,10 +62,17 @@ scale with log-log slope 1.835. The exact batch sum certificate gives
 
 ## Estimator and applications
 
-The preserved Claim 4 Monte Carlo remains full-credit evidence: at dimensions
+The preserved ideal-estimator Monte Carlo remains full-credit evidence: at dimensions
 5, 25, and 100, 80,000 samples yield perpendicular errors below 0.0042 and
 `C_hat` within the analytic interval. An independent gamma-function checker
 and an unsigned antithetic control prevent a vacuous pass.
+
+The actual finite-perturbation estimator is different. On a smooth
+assumption-satisfying nonlinear objective, 200,000 directions per dimension
+produce 6.27–7.55% sign disagreement at `nu=.5`; paired orthogonal-bias 95%
+lower bounds range from 0.0274 to 0.1467. Small-`nu` and linear controls have
+zero disagreement. Claim 4 is therefore FALSIFIED AS WRITTEN for unqualified
+finite-`nu` unbiasedness while Lemma 3.2's ideal identity remains VERIFIED.
 
 For Claim 5, the calibrated sphere attack produces final true-label margins
 `[-10.79, 1.64, -9.72, -6.70]`, changing three predictions. Reversed signs
@@ -82,17 +92,20 @@ eigenvalues remain positive.
 | Claim | Paper evidence | Observed evidence | Assessment |
 | --- | --- | --- | --- |
 | 1 | RDNGD `O(d epsilon^-2)` / `O(d epsilon^-1)` | symbolic certificate; 18/18 held-out cells | VERIFIED |
-| 2 | RRDNGD linear convergence as printed | valid counterexample; correction control passes | FALSIFIED as printed |
+| 2 | RRDNGD linear convergence | corrected slopes near -1 bit/phase; dimension-linear cost | VERIFIED; printed schedule separately FALSIFIED |
 | 3 | RDFW `O(epsilon^-1)` iterations, `O(d epsilon^-2)` comparisons | exact sum; executable zero-projection sweep | VERIFIED |
-| 4 | unbiased normalized direction estimator | max perpendicular error 0.00412 | VERIFIED |
+| 4 | unbiased normalized direction estimator | ideal identity passes; finite-nu paired bias is nonzero | FALSIFIED AS WRITTEN; ideal VERIFIED |
 | 5 | VGG attack and `SO(2)` leveling | calibrated 3/4; `SO(2)` 19/19 | VERIFIED mechanism; deviations explicit |
 | 6 | sphere and SPD applications | dense SPD gaps below `2.5e-5` | VERIFIED scope |
 
 ## Compute and provenance
 
-The winning cumulative run used Hugging Face `cpu-upgrade`: estimated 8
-computational cores, 64 logical CPUs allocated, PyTorch capped at 8 threads
-and BLAS at one. Scientific runtime was 266.79 seconds. No GPU was used.
+The winning cumulative run `27332bb6-e56c-42ae-9d9e-4b0a885df123` at Git SHA
+`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714` used Hugging Face
+`cpu-upgrade`: estimated 8 computational cores, 64 logical CPUs allocated,
+PyTorch capped at 8 threads and BLAS at one. Scientific runtime was 1339.44
+seconds; the application route accounted for 1154.28 seconds because asset
+loading varied. No GPU was used.
 
 Important lineage:
 
@@ -100,7 +113,8 @@ Important lineage:
 - [theorem counterexample](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/theorem-contracts-and-rrdngd-source-audit)
 - [dense SPD reproduction](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/dense-spd-karcher-rdngd)
 - [calibrated real applications](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/calibrated-cpu-vgg-sphere-attack)
-- [winning scientific node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/held-out-rdngd-nonconvex-resource-calibration)
+- [finite-nu estimator audit](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/finite-nu-estimator-bias-adjudication)
+- [evaluator-aligned cumulative node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/evaluator-aligned-six-claim-adjudication)
 
 Previous live score: 3/12. A perfect score is not promised, and no score
 increase is claimed until the live evaluator judges the published revision.

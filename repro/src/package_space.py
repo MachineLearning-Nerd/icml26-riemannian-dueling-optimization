@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Overlay the candidate text files on a fresh exact judged-Space clone."""
+"""Overlay the candidate text files on a fresh exact current-Space clone."""
 from __future__ import annotations
 
 import hashlib
@@ -18,8 +18,12 @@ SOURCE_MAP = {
     "reproduction/real_applications.py": ROOT / "repro/src/real_applications.py",
     "reproduction/theorem_audit.py": ROOT / "repro/src/theorem_audit.py",
     "reproduction/verify_claim4_source.py": ROOT / "repro/src/verify_claim4.py",
+    "reproduction/finite_nu_estimator.py": ROOT / "repro/src/finite_nu_estimator.py",
     "reproduction/cumulative_verify.py": ROOT / "repro/src/verify.py",
     "reproduction/publication_gate.py": ROOT / "repro/src/publication_gate.py",
+    "reproduction/protected_space_8b6af91_manifest.sha256": (
+        ROOT / ".openresearch/artifacts/protected_space_8b6af91_manifest.sha256"
+    ),
     "reproduction/pyproject.toml": ROOT / "pyproject.toml",
     "reproduction/uv.lock": ROOT / "uv.lock",
 }
@@ -37,12 +41,12 @@ def digest(path: Path) -> str:
 
 def main() -> None:
     if len(sys.argv) != 3:
-        raise SystemExit("usage: package_space.py JUDGED_CLONE CANDIDATE_DIR")
-    judged = Path(sys.argv[1]).resolve()
+        raise SystemExit("usage: package_space.py CURRENT_CLONE CANDIDATE_DIR")
+    current = Path(sys.argv[1]).resolve()
     candidate = Path(sys.argv[2]).resolve()
-    assert judged.is_dir()
+    assert current.is_dir()
     assert not candidate.exists()
-    shutil.copytree(judged, candidate, ignore=shutil.ignore_patterns(".git"))
+    shutil.copytree(current, candidate, ignore=shutil.ignore_patterns(".git"))
     for destination in ALLOWLIST:
         source = source_for(destination)
         assert source.is_file(), source

@@ -8,12 +8,16 @@ evaluated.
 The campaign tests all six judged claims. Headline observed evidence:
 
 - RDNGD: symbolic rate certificates and 18/18 held-out target cells pass.
-- RRDNGD: Algorithm 2 as printed ends at `8.02e-5` for a `1e-6` target;
-  the Appendix-F control reaches `2.26e-16`. Verdict: FALSIFIED as printed.
+- RRDNGD: proof-consistent log2 error slopes are `-1.003`, `-0.995`, and
+  `-1.039` with dimension-linear phase cost. The broad intended claim is
+  VERIFIED; the growing schedule printed in Algorithm 2 is separately
+  FALSIFIED.
 - RDFW: zero-projection executable sweeps and the exact oracle-sum certificate
   pass.
-- Estimator: maximum perpendicular error is 0.00412 over 80,000 samples per
-  dimension, preserving the existing full-credit result.
+- Estimator: the ideal identity remains VERIFIED. At finite `nu=.5`, the
+  actual estimator has 6.27–7.55% sign disagreement and strictly positive
+  paired orthogonal-bias confidence bounds, FALSIFYING unqualified
+  finite-perturbation unbiasedness.
 - Applications: the calibrated comparison-only VGG sphere attack changes 3/4
   predictions; the paper-setting route changes 0/2 and remains separately
   BLOCKED. `SO(2)` leveling succeeds on 19/19 deterministic tilts.
@@ -43,7 +47,8 @@ Every formal node inherited this exact command:
 | [theorem audit](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/theorem-contracts-and-rrdngd-source-audit) | Exact contracts and Algorithm 2 counterexample | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | C2 FALSIFIED as printed | HF cpu-upgrade |
 | [dense SPD](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/dense-spd-karcher-rdngd) | Replace diagonal shortcut with comparison-only RDNGD | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | C6 VERIFIED scope | HF cpu-upgrade |
 | [calibrated applications](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/calibrated-cpu-vgg-sphere-attack) | Pinned VGG/CIFAR sphere attack and `SO(2)` | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | attack 3/4; `SO(2)` 19/19 | HF cpu-upgrade |
-| [winning scientific node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/held-out-rdngd-nonconvex-resource-calibration) | Held-out Claim 1 calibration plus cumulative regression | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | 9/9 nonconvex, 9/9 convex; all inherited checks pass | HF cpu-upgrade, 266.79 s |
+| [finite-nu estimator](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/finite-nu-estimator-bias-adjudication) | Distinguish ideal and finite-perturbation estimators | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | ideal VERIFIED; unqualified finite-nu wording FALSIFIED | HF cpu-upgrade, 321.21 s |
+| [evaluator-aligned cumulative node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/evaluator-aligned-six-claim-adjudication) | Promote exact six-claim adjudication and rerun all checks | `uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py` | all six contracts resolved; release gate passed | HF cpu-upgrade, 1339.44 s |
 
 ## Environment
 

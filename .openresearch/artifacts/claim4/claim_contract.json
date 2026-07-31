@@ -11,7 +11,8 @@
     "lemma_3_2": "For nonzero tangent v and unit-uniform tangent u, E[sign(<v,u>)u]=(C_hat/sqrt(d))v/||v|| with C_hat in [1/sqrt(2pi),1]."
   },
   "verdict_rule": {
-    "control": "An unsigned antithetic direction set must have exactly zero mean.",
-    "pass": "Every empirical C_hat is in the source interval, differs from the exact spherical constant by less than 0.05, and has perpendicular error below 0.01."
+    "ideal_pass": "Every empirical C_hat is in the source interval, differs from the exact spherical constant by less than 0.05, and has perpendicular error below 0.01.",
+    "finite_nu_falsification": "On a smooth bounded-domain objective satisfying the lemma assumptions, the paired 95% lower bound for orthogonal bias is above 0.015 and sign disagreement is above 0.04 at nu=0.5.",
+    "controls": "The nonlinear objective at nu=1e-4 and the linear objective at nu=0.5 must agree with the ideal signs."
   }
 }

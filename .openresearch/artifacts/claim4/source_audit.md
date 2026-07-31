@@ -13,6 +13,9 @@ Anchors:
 
 Lemma 3.2 is an exact expectation for the ideal sign vector. Lemma 3.1 gives
 only a high-probability equality between the finite-perturbation comparison
-estimator and that vector. The current verdict therefore verifies the exact
-two-lemma contract and does not claim that finite-`nu` `h_nu` is globally
-unbiased.
+estimator and that vector. Proposition 3.3 establishes approximate alignment,
+and Remark 3.4 calls finite-perturbation bias unavoidable.
+
+The registry wording merges these objects. The audit therefore reports two
+results: the ideal Lemma 3.2 identity is verified, while unqualified
+unbiasedness of finite-`nu` `h_nu` is tested for falsification.

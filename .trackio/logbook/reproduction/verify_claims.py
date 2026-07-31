@@ -22,7 +22,14 @@ c2 = load(2)
 counterexample = c2["counterexample"]
 assert counterexample["printed_final_gap"] > counterexample["target"]
 assert counterexample["proof_consistent_final_gap"] < counterexample["target"]
-assert c2["status"] == "FALSIFIED"
+assert c2["printed_schedule_status"] == "FALSIFIED"
+assert c2["status"] == "VERIFIED"
+assert all(
+    -1.2 < slope < -0.8
+    for slope in c2["corrected_empirical_control"][
+        "log2_error_slope_per_phase"
+    ].values()
+)
 
 c3 = load(3)
 assert c3["projection_calls"] == 0
@@ -32,6 +39,17 @@ assert c3["negative_control"]["suboptimality"] > 0.5
 
 c4 = json.loads((ROOT / "outputs/current_claim4.json").read_text())
 assert all(row["perpendicular_error"] < 0.01 for row in c4["dimensions"])
+finite = c4["finite_nu_bias"]
+assert finite["ideal_estimator_status"] == "VERIFIED"
+assert finite["finite_perturbation_status"] == "FALSIFIED_AS_WRITTEN"
+assert all(
+    dimension["finite_nu_rows"][1]["paired_orthogonal_absolute_lower_95"] > 0.015
+    for dimension in finite["dimensions"]
+)
+assert all(
+    dimension["linear_objective_negative_control"]["sign_disagreement_rate"] == 0
+    for dimension in finite["dimensions"]
+)
 
 c5 = load(5)
 assert c5["calibrated_attack"]["successful_images"] >= 2

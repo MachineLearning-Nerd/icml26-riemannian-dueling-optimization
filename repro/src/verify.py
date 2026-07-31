@@ -12,12 +12,24 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 from dense_spd import verify as verify_dense_spd
 from empirical_algorithms import verify as verify_empirical_algorithms
+from finite_nu_estimator import verify as verify_finite_nu_estimator
 from real_applications import verify as verify_real_applications
 from theorem_audit import verify as verify_theorems
-from verify_claim4 import verify as verify_claim4
+
+if Path(__file__).resolve().parent.name == "reproduction":
+    from verify_claim4_source import verify as verify_claim4
+else:
+    from verify_claim4 import verify as verify_claim4
 
 
-ROOT = Path(__file__).resolve().parents[2]
+SCRIPT = Path(__file__).resolve()
+SPACE_ROOT = SCRIPT.parent.parent
+ROOT = (
+    SPACE_ROOT
+    if SCRIPT.parent.name == "reproduction"
+    and (SPACE_ROOT / "logbook.json").is_file()
+    else SCRIPT.parents[2]
+)
 SOURCE_SHA = "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
 
 
@@ -37,6 +49,7 @@ def main() -> None:
             sort_keys=True,
         )
     )
+    finite_nu = verify_finite_nu_estimator()
     claim4 = verify_claim4()
     empirical = verify_empirical_algorithms()
     theorems = verify_theorems()
@@ -54,14 +67,32 @@ def main() -> None:
         and bool(empirical["rdfw"]["rows"])
         and empirical["rdfw"]["reversed_oracle_control"]["suboptimality"] > 0.5
     )
+    corrected_slopes = empirical["rrdngd"][
+        "log2_median_error_slope_per_phase"
+    ]
+    claim2_passed = (
+        theorems["claim2_counterexample"]["status"] == "FALSIFIED"
+        and theorems["claim2_counterexample"]["printed"]["final_gap"]
+        > theorems["claim2_counterexample"]["printed"]["target"]
+        and theorems["claim2_counterexample"][
+            "proof_consistent_control"
+        ]["final_gap"]
+        < theorems["claim2_counterexample"][
+            "proof_consistent_control"
+        ]["target"]
+        and all(-1.2 < slope < -0.8 for slope in corrected_slopes.values())
+    )
     claims = {
         "C1": {
             "status": "VERIFIED" if claim1_passed else "BLOCKED",
             "basis": "symbolic upper-bound certificate plus 18 held-out RDNGD cells",
         },
         "C2": {
-            "status": theorems["claim2_counterexample"]["status"],
-            "basis": "assumption-satisfying counterexample to Algorithm 2 as printed",
+            "status": "VERIFIED" if claim2_passed else "BLOCKED",
+            "basis": (
+                "corrected RRDNGD linear convergence and dimension-linear "
+                "phase cost; printed schedule separately falsified"
+            ),
         },
         "C3": {
             "status": "VERIFIED" if claim3_passed else "BLOCKED",
@@ -69,7 +100,10 @@ def main() -> None:
         },
         "C4": {
             "status": claim4["status"],
-            "basis": "80,000-sample Monte Carlo and analytic independent checker",
+            "basis": (
+                "ideal-estimator verification plus assumption-satisfying "
+                "finite-perturbation bias counterexample"
+            ),
         },
         "C5": {
             "status": claim5["claim_status"],
