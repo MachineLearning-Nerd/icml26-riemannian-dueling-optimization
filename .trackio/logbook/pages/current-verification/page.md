@@ -35,7 +35,7 @@ Every experiment inherited exactly:
 uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
 ```
 
-Winning scientific evidence: run `7443fdc4-50fb-4443-8915-f5dc0ab9d5f8`,
-Git SHA `cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942`, HF `cpu-upgrade`,
+Winning scientific evidence: run `27332bb6-e56c-42ae-9d9e-4b0a885df123`,
+Git SHA `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, HF `cpu-upgrade`,
 estimated 8 computational cores, 64 logical CPUs allocated, PyTorch 8 threads,
-BLAS one thread, scientific runtime 266.79 s.
+BLAS one thread, scientific runtime 1339.44 s.

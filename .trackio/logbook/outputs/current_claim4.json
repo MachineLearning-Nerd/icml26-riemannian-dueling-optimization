@@ -4,7 +4,7 @@
     {"C_hat": 0.8086866556496503, "d": 25, "perpendicular_error": 0.0041206350313824774},
     {"C_hat": 0.8016904228056723, "d": 100, "perpendicular_error": 0.0035109501913837635}
   ],
-  "evidence_commit": "699185628f09c4d8ed78e76c2029e873e3facb74",
+  "evidence_commit": "d94d1e7e64e2907c7a8c7a92e1e00dda922fc714",
   "finite_nu_bias": {
     "assumption_audit": {
       "curvature": 0,
@@ -66,7 +66,7 @@
     "samples_per_dimension": 200000,
     "seed": 20260731
   },
-  "run_id": "aa0bd0f6-283a-4c33-80f7-9a1b7862dc6d",
+  "run_id": "27332bb6-e56c-42ae-9d9e-4b0a885df123",
   "samples_per_dimension": 80000,
   "seed": 20260729
 }

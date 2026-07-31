@@ -51,9 +51,10 @@ uv run --locked python repro/src/verify.py && uv run --locked python repro/src/p
 
 The ideal evidence uses seed 20260729. The finite-`nu` evidence uses seed
 20260731 and was independently rerun in cumulative run
-`bede91a0-294b-41df-bc97-4af943c3da4a` on HF `cpu-upgrade`
+`27332bb6-e56c-42ae-9d9e-4b0a885df123`, Git SHA
+`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, on HF `cpu-upgrade`
 (8 computational cores estimated, 64 logical CPUs allocated, BLAS capped at
-one thread), Python 3.12.12. Full scientific runtime was 321.21 s.
+one thread), Python 3.12.12. Full cumulative scientific runtime was 1339.44 s.
 
 - [Raw JSON](../../outputs/current_claim4.json)
 - [Executable independent checker](../../reproduction/verify_claim4.py)

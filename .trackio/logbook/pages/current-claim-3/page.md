@@ -33,8 +33,8 @@ uv run --locked python repro/src/verify.py && uv run --locked python repro/src/p
 - [Symbolic certificate](../../reproduction/theorem_audit.py)
 - Source anchors: `#alg3`, `#S4.Thmtheorem1`
 
-Evidence run `7443fdc4-50fb-4443-8915-f5dc0ab9d5f8`, SHA
-`cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942`, seed root 20260729,
+Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
+`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seed root 20260729,
 HF `cpu-upgrade`; 64 logical CPUs allocated, BLAS one thread.
 
 **Limitation.** The finite sweep corroborates the named algorithm. Universal

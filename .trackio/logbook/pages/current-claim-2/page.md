@@ -48,9 +48,9 @@ uv run --locked python repro/src/verify.py && uv run --locked python repro/src/p
 - [Corrected RRDNGD control](../../reproduction/empirical_algorithms.py)
 - Source anchors: `#alg2`, `#S3.Thmtheorem10`, Appendix F
 
-Evidence run `7443fdc4-50fb-4443-8915-f5dc0ab9d5f8`, SHA
-`cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942`, deterministic seed root
-20260729, HF `cpu-upgrade`, cumulative runtime 266.79 s.
+Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
+`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, deterministic seed root
+20260729, HF `cpu-upgrade`, cumulative runtime 1339.44 s.
 
 **Limitation.** The broad complexity verdict uses the proof-consistent schedule
 required by Appendix F. The literal Algorithm 2 schedule is separately

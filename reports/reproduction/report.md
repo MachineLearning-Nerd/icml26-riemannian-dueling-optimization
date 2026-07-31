@@ -100,9 +100,12 @@ eigenvalues remain positive.
 
 ## Compute and provenance
 
-The winning cumulative run used Hugging Face `cpu-upgrade`: estimated 8
-computational cores, 64 logical CPUs allocated, PyTorch capped at 8 threads
-and BLAS at one. Scientific runtime was 266.79 seconds. No GPU was used.
+The winning cumulative run `27332bb6-e56c-42ae-9d9e-4b0a885df123` at Git SHA
+`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714` used Hugging Face
+`cpu-upgrade`: estimated 8 computational cores, 64 logical CPUs allocated,
+PyTorch capped at 8 threads and BLAS at one. Scientific runtime was 1339.44
+seconds; the application route accounted for 1154.28 seconds because asset
+loading varied. No GPU was used.
 
 Important lineage:
 
