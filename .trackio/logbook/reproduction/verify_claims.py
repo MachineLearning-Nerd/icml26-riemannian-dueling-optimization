@@ -41,11 +41,15 @@ c4 = json.loads((ROOT / "outputs/current_claim4.json").read_text())
 assert all(row["perpendicular_error"] < 0.01 for row in c4["dimensions"])
 finite = c4["finite_nu_bias"]
 assert finite["ideal_estimator_status"] == "VERIFIED"
-assert finite["finite_perturbation_status"] == "FALSIFIED_AS_WRITTEN"
-assert all(
-    dimension["finite_nu_rows"][1]["paired_orthogonal_absolute_lower_95"] > 0.015
-    for dimension in finite["dimensions"]
-)
+assert finite["finite_perturbation_status"] == "CONSISTENT_WITH_LEMMA_3_1"
+lemma31 = c4["lemma_3_1_perturbation"]
+assert lemma31["status"] == "VERIFIED"
+assert lemma31["lemma_3_1_all_cells_non_vacuous"]
+assert lemma31["lemma_3_1_all_cells_hold"]
+assert lemma31["negative_control_all_violated"]
+assert lemma31["sign_blind_control"]["fails_as_intended"]
+assert lemma31["lemma_3_2_improved_constants"]["all_inside_paper_interval"]
+assert lemma31["lemma_3_2_improved_constants"]["improvement_factor_matches_paper"]
 assert all(
     dimension["linear_objective_negative_control"]["sign_disagreement_rate"] == 0
     for dimension in finite["dimensions"]

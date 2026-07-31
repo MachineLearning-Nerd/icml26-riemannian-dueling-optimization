@@ -7,12 +7,21 @@
     "url": "https://ar5iv.labs.arxiv.org/html/2603.00023"
   },
   "source_contract": {
+    "gamma_x": "gamma_x = sqrt(d/2pi) * L * nu / ||grad f(x)|| (eq. 5); the guarantee has content only where gamma_x < 1.",
+    "improved_constants": "Lemma 3.2 raises the lower bound on C_hat from 1/20 (Saha et al., 2021) to 1/sqrt(2pi), an up-to-eightfold reduction in the gradient-direction estimation error bound.",
     "lemma_3_1": "For geodesically L-smooth f, unit-uniform tangent u, and nu in (0,1), h_nu(x) equals sign(<grad f(x),u>)u with probability at least 1-gamma_x.",
     "lemma_3_2": "For nonzero tangent v and unit-uniform tangent u, E[sign(<v,u>)u]=(C_hat/sqrt(d))v/||v|| with C_hat in [1/sqrt(2pi),1]."
   },
   "verdict_rule": {
-    "ideal_pass": "Every empirical C_hat is in the source interval, differs from the exact spherical constant by less than 0.05, and has perpendicular error below 0.01.",
-    "finite_nu_falsification": "On a smooth bounded-domain objective satisfying the lemma assumptions, the paired 95% lower bound for orthogonal bias is above 0.015 and sign disagreement is above 0.04 at nu=0.5.",
-    "controls": "The nonlinear objective at nu=1e-4 and the linear objective at nu=0.5 must agree with the ideal signs."
+    "controls": "(a) the bound tightened to gamma_x/(4d) must be VIOLATED in every cell; (b) a sign-blind fair-coin oracle must give a disagreement rate above 0.45; (c) the nonlinear objective at nu=1e-4 and the linear objective at nu=0.5 must agree exactly with the ideal signs.",
+    "falsification_rule": "Claim 4 is FALSIFIED only by an assumption-satisfying cell with gamma_x < 1 whose 99.9% lower confidence bound exceeds gamma_x. No such cell was found.",
+    "improved_constants_pass": "The exact C_hat lies in the paper's interval and above 1/20 for every tested d, and (1/sqrt(2pi))/(1/20) agrees with the paper's stated factor of 8 to within 0.05.",
+    "lemma_3_1_pass": "On every cell of a sweep restricted to gamma_x < 1 over an exactly L-smooth objective, the one-sided 99.9% lower confidence bound on the measured disagreement rate does not exceed gamma_x, and each cell observes at least one disagreement event.",
+    "lemma_3_2_pass": "Every empirical C_hat is inside [1/sqrt(2pi),1], differs from the exact spherical constant sqrt(d)*Gamma(d/2)/(sqrt(pi)Gamma((d+1)/2)) by less than 0.05, and has perpendicular error below 0.01."
+  },
+  "withdrawn_verdict": {
+    "previous": "FALSIFIED_AS_WRITTEN",
+    "reason": "The cells relied on L=20d, ||grad f||=1 and nu=0.5, giving gamma_x from 11.283792 (d=2) to 1410.473959 (d=50). Lemma 3.1 asserts nothing when gamma_x >= 1, so those cells are consistent with the lemma and are not a counterexample.",
+    "replacement": "repro/src/lemma31_perturbation.py, a 13-cell gamma_x < 1 sweep."
   }
 }

@@ -11,7 +11,7 @@ evaluates this revision.
 | 1 | **VERIFIED** | [Symbolic certificate + 18 held-out RDNGD cells](#/current-claim-1) |
 | 2 | **VERIFIED intended theorem; printed schedule FALSIFIED** | [RRDNGD slopes, oracle counts, and source defect](#/current-claim-2) |
 | 3 | **VERIFIED** | [Executable projection-free RDFW sweep](#/current-claim-3) |
-| 4 | **FALSIFIED AS WRITTEN; ideal estimator VERIFIED** | [Finite-nu counterexample + ideal-estimator checker](#/current-claim-4) |
+| 4 | **VERIFIED** | [Lemma 3.1 non-vacuous gamma_x sweep + Lemma 3.2 ideal estimator and improved constants](#/current-claim-4) |
 | 5 | **VERIFIED for application mechanism** | [VGG sphere attack + SO(2), with deviations](#/current-claim-5) |
 | 6 | **VERIFIED for application scope** | [Dense noncommuting SPD RDNGD](#/current-claim-6) |
 

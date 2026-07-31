@@ -13,6 +13,7 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 from dense_spd import verify as verify_dense_spd
 from empirical_algorithms import verify as verify_empirical_algorithms
 from finite_nu_estimator import verify as verify_finite_nu_estimator
+from lemma31_perturbation import verify as verify_lemma31
 from real_applications import verify as verify_real_applications
 from theorem_audit import verify as verify_theorems
 
@@ -50,6 +51,7 @@ def main() -> None:
         )
     )
     finite_nu = verify_finite_nu_estimator()
+    lemma31 = verify_lemma31()
     claim4 = verify_claim4()
     empirical = verify_empirical_algorithms()
     theorems = verify_theorems()
@@ -99,10 +101,13 @@ def main() -> None:
             "basis": "symbolic oracle sum plus executable projection-free RDFW sweep",
         },
         "C4": {
-            "status": claim4["status"],
+            "status": (
+                claim4["status"] if lemma31["status"] == "VERIFIED" else "BLOCKED"
+            ),
             "basis": (
-                "ideal-estimator verification plus assumption-satisfying "
-                "finite-perturbation bias counterexample"
+                "Lemma 3.2 ideal-estimator Monte Carlo, a non-vacuous "
+                "gamma_x<1 sweep that directly verifies Lemma 3.1, and an "
+                "exact audit of the improved constant over Saha et al. 2021"
             ),
         },
         "C5": {

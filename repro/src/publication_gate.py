@@ -75,6 +75,7 @@ for opened_file in (
     "reproduction/verify_claim4.py",
     "reproduction/verify_claim4_source.py",
     "reproduction/finite_nu_estimator.py",
+    "reproduction/lemma31_perturbation.py",
     "reproduction/real_applications.py",
     "reproduction/dense_spd.py",
 ):

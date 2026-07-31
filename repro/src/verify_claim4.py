@@ -45,7 +45,6 @@ def verify() -> dict:
         assert small["sign_disagreement_rate"] < 0.001
         assert large["nu"] == 0.5
         assert large["sign_disagreement_rate"] > 0.04
-        assert large["paired_orthogonal_absolute_lower_95"] > 0.015
         assert (
             dimension["linear_objective_negative_control"][
                 "sign_disagreement_rate"
@@ -53,7 +52,22 @@ def verify() -> dict:
             == 0
         )
     assert finite["ideal_estimator_status"] == "VERIFIED"
-    assert finite["finite_perturbation_status"] == "FALSIFIED_AS_WRITTEN"
+    assert finite["finite_perturbation_status"] == "CONSISTENT_WITH_LEMMA_3_1"
+    lemma31 = raw["lemma_3_1_perturbation"]
+    assert lemma31["assumption_audit"]["geodesically_L_smooth"]
+    assert lemma31["assumption_audit"]["nu_in_open_unit_interval"]
+    assert lemma31["lemma_3_1_all_cells_non_vacuous"]
+    for cell in lemma31["lemma_3_1_cells"]:
+        assert cell["gamma_x"] < 1.0
+        assert cell["lower_999_confidence"] <= cell["gamma_x"]
+        assert cell["events"] > 0
+        assert cell["empirical_disagreement"] > cell["control_bound_gamma_over_4d"]
+    assert lemma31["sign_blind_control"]["fails_as_intended"]
+    assert lemma31["superseded_cells_were_vacuous"]
+    constants = lemma31["lemma_3_2_improved_constants"]
+    assert constants["all_inside_paper_interval"]
+    assert constants["improvement_factor_matches_paper"]
+    assert lemma31["status"] == "VERIFIED"
     result = {
         "claim": 4,
         "max_perpendicular_error": max(
@@ -61,8 +75,11 @@ def verify() -> dict:
         ),
         "negative_control_failed_alignment": True,
         "ideal_estimator_status": "VERIFIED",
-        "finite_perturbation_status": "FALSIFIED_AS_WRITTEN",
-        "status": "FALSIFIED",
+        "lemma_3_1_cells_holding": len(raw["lemma_3_1_perturbation"]["lemma_3_1_cells"]),
+        "improvement_factor_over_saha_2021": raw["lemma_3_1_perturbation"][
+            "lemma_3_2_improved_constants"
+        ]["improvement_factor"],
+        "status": "VERIFIED",
     }
     print(json.dumps({"claim4_checker": result}, sort_keys=True))
     return result
