@@ -45,8 +45,12 @@ i.e. no progress at all from the starting gap.
 
 The independent fixed-point reference residuals are below `8e-13`, all output
 eigenvalues remain positive, and minimum pairwise commutator norms are
-`0.0139` and `0.1923`. Reversing comparison signs worsens the objectives to
-`0.9865` and `1.2289`.
+`0.0139` and `0.1923`.
+
+**Negative controls.** Reversing the comparison signs worsens the SPD
+objectives to `0.9865` and `1.2289` (from `0.5743` and `1.0544`), and leaves
+the sphere gaps at `7.0176e-1` and `6.7434e-1` — no progress at all. Both fail
+for the intended reason: the duel outcome is the only signal the optimizer has.
 
 **Reproduce.**
 

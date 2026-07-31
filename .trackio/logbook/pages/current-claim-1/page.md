@@ -23,9 +23,12 @@ rule was the first horizon whose one-sided 95% calibration bound was below
 | 8 | .35 / .25 / .18 | 32 / 32 / 128 | .2346 / .2346 / .1519 |
 | 16 | .35 / .25 / .18 | 32 / 128 / 256 | .2717 / .1940 / .1490 |
 
-All 9/9 nonconvex and 9/9 convex held-out cells satisfy their target. Discarding
-comparisons leaves gradient norm `0.3120 > 0.18`; reversing convex comparisons
-leaves suboptimality `1.125 > 0.02`.
+All 9/9 nonconvex and 9/9 convex held-out cells satisfy their target.
+
+**Negative controls.** Discarding the comparison outcomes leaves gradient norm
+`0.3120 > 0.18`, and reversing the convex comparisons leaves suboptimality
+`1.125 > 0.02`. Both fail for the intended reason: without a usable sign the
+iterate has no descent information.
 
 **Reproduce.**
 

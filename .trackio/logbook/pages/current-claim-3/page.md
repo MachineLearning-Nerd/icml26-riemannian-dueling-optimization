@@ -18,8 +18,12 @@ LMO and comparison signs.
 
 Every run used zero projections and stayed feasible. The `d=3` series is
 explicitly floor-limited and is not used to estimate the asymptotic error
-slope. Reversing comparison signs at `d=15,T=80` leaves error `0.532789`,
-versus `0.000374` normally.
+slope.
+
+**Negative control.** Reversing the comparison signs at `d=15, T=80` leaves
+error `0.532789` against `0.000374` normally — three orders of magnitude worse,
+confirming the LMO steps are driven by the oracle and not by the geometry
+alone.
 
 **Reproduce.**
 

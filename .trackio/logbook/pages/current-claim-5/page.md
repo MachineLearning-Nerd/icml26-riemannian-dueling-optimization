@@ -18,8 +18,12 @@ four predictions in 1,000 steps (40,000 main duels):
 | 2 | 9.561 | -9.718 | yes |
 | 3 | 10.270 | -6.702 | yes |
 
-Maximum sphere-radius error was `7.15e-7`. Reversed comparison signs increased
-the control margin from `1.860` to `12.700`, failing the attack as intended.
+Maximum sphere-radius error was `7.15e-7`.
+
+**Negative controls.** Reversing the comparison signs increases the control
+margin from `1.860` to `12.700`, i.e. the attack fails as intended; on the
+`SO(2)` route reversed signs leave a maximum best loss of `0.3982` against
+`0.0` normally.
 
 The paper-setting route (`nu=eta=1e-6`, 1,000 steps, batch 10,
 radius `0.05||image||`) changed 0/2 labels and remains **BLOCKED**, not

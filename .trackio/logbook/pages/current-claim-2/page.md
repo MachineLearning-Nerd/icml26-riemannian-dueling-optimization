@@ -31,6 +31,9 @@ An exact counterexample satisfies every stated assumption:
 interior optimum zero, and nonexpansive projection. At target `1e-6`, 42
 phases of 203 iterations consume 17,052 comparisons.
 
+**Negative control.** The two schedules are run head-to-head on identical
+seeds, iterate counts and oracle budgets, so only the schedule differs:
+
 | Schedule | final gap | meets `1e-6` |
 | --- | ---: | --- |
 | Algorithm 2 as printed | `8.024201e-5` | no |

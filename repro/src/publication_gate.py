@@ -52,6 +52,7 @@ required_page_terms = (
     "checker",
     "Limitation",
     "cpu-upgrade",
+    "Negative control",
 )
 for number in range(1, 7):
     page = LOGBOOK / f"pages/current-claim-{number}/page.md"
