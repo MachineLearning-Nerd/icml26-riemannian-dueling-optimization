@@ -18,6 +18,7 @@ SOURCE_MAP = {
     "reproduction/real_applications.py": ROOT / "repro/src/real_applications.py",
     "reproduction/theorem_audit.py": ROOT / "repro/src/theorem_audit.py",
     "reproduction/verify_claim4_source.py": ROOT / "repro/src/verify_claim4.py",
+    "reproduction/finite_nu_estimator.py": ROOT / "repro/src/finite_nu_estimator.py",
     "reproduction/cumulative_verify.py": ROOT / "repro/src/verify.py",
     "reproduction/publication_gate.py": ROOT / "repro/src/publication_gate.py",
     "reproduction/pyproject.toml": ROOT / "pyproject.toml",
