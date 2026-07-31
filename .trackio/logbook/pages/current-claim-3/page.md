@@ -25,6 +25,8 @@ versus `0.000374` normally.
 
 ```bash
 uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
+# Downloaded Space:
+cd reproduction && uv run --locked python cumulative_verify.py && uv run --locked python publication_gate.py
 ```
 
 - [Raw result](../../outputs/claim3.json)

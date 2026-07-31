@@ -23,5 +23,6 @@ reproduction/verify_claim4_source.py
 reproduction/finite_nu_estimator.py
 reproduction/cumulative_verify.py
 reproduction/publication_gate.py
+reproduction/protected_space_8b6af91_manifest.sha256
 reproduction/pyproject.toml
 reproduction/uv.lock

@@ -35,6 +35,12 @@ Every experiment inherited exactly:
 uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
 ```
 
+From a downloaded Space revision, the self-contained equivalent is:
+
+```bash
+cd reproduction && uv run --locked python cumulative_verify.py && uv run --locked python publication_gate.py
+```
+
 Winning scientific evidence: run `27332bb6-e56c-42ae-9d9e-4b0a885df123`,
 Git SHA `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, HF `cpu-upgrade`,
 estimated 8 computational cores, 64 logical CPUs allocated, PyTorch 8 threads,

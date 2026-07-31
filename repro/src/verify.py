@@ -15,10 +15,21 @@ from empirical_algorithms import verify as verify_empirical_algorithms
 from finite_nu_estimator import verify as verify_finite_nu_estimator
 from real_applications import verify as verify_real_applications
 from theorem_audit import verify as verify_theorems
-from verify_claim4 import verify as verify_claim4
+
+if Path(__file__).resolve().parent.name == "reproduction":
+    from verify_claim4_source import verify as verify_claim4
+else:
+    from verify_claim4 import verify as verify_claim4
 
 
-ROOT = Path(__file__).resolve().parents[2]
+SCRIPT = Path(__file__).resolve()
+SPACE_ROOT = SCRIPT.parent.parent
+ROOT = (
+    SPACE_ROOT
+    if SCRIPT.parent.name == "reproduction"
+    and (SPACE_ROOT / "logbook.json").is_file()
+    else SCRIPT.parents[2]
+)
 SOURCE_SHA = "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
 
 

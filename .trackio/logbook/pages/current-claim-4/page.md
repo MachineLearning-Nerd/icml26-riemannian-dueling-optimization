@@ -47,6 +47,8 @@ zero mean and fails gradient alignment for the intended reason.
 
 ```bash
 uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
+# Downloaded Space:
+cd reproduction && uv run --locked python cumulative_verify.py && uv run --locked python publication_gate.py
 ```
 
 The ideal evidence uses seed 20260729. The finite-`nu` evidence uses seed

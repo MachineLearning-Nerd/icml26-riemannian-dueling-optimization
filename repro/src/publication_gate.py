@@ -5,11 +5,21 @@ from __future__ import annotations
 import hashlib
 import json
 import runpy
+import shutil
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
-LOGBOOK = ROOT / ".trackio/logbook"
+SCRIPT = Path(__file__).resolve()
+SPACE_ROOT = SCRIPT.parent.parent
+IS_SPACE = (
+    SCRIPT.parent.name == "reproduction"
+    and (SPACE_ROOT / "logbook.json").is_file()
+)
+ROOT = SPACE_ROOT if IS_SPACE else SCRIPT.parents[2]
+LOGBOOK = ROOT if IS_SPACE else ROOT / ".trackio/logbook"
 
 
 def sha256(path: Path) -> str:
@@ -53,15 +63,64 @@ visibility = (LOGBOOK / "pages/visibility-matrix/page.md").read_text()
 for number in range(1, 7):
     assert f"| {number} |" in visibility
 
+protected_manifest = (
+    ROOT / "reproduction/protected_space_8b6af91_manifest.sha256"
+    if IS_SPACE
+    else ROOT / ".openresearch/artifacts/protected_space_8b6af91_manifest.sha256"
+)
 protected = {}
-for line in (
-    ROOT / ".openresearch/artifacts/protected_space_8b6af91_manifest.sha256"
-).read_text().splitlines():
+for line in protected_manifest.read_text().splitlines():
     digest, name = line.split("  ", 1)
     protected[name] = digest
 for name, digest in protected.items():
     if name.startswith("pages/"):
         assert sha256(LOGBOOK / name) == digest
+
+
+def verify_packaged_space_layout() -> None:
+    if IS_SPACE:
+        return
+    with tempfile.TemporaryDirectory(prefix="rdopt-space-gate-") as temporary:
+        temporary_root = Path(temporary)
+        current = temporary_root / "current"
+        candidate = temporary_root / "candidate"
+        shutil.copytree(LOGBOOK, current)
+        subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "repro/src/package_space.py"),
+                str(current),
+                str(candidate),
+            ],
+            check=True,
+        )
+        shutil.copy2(
+            ROOT / "outputs/verdict.json",
+            candidate / "outputs/verdict.json",
+        )
+        reproduction = candidate / "reproduction"
+        subprocess.run(
+            [
+                sys.executable,
+                "-c",
+                (
+                    "from pathlib import Path; import cumulative_verify; "
+                    "assert cumulative_verify.ROOT == Path.cwd().parent; "
+                    "assert cumulative_verify.verify_claim4.__module__ "
+                    "== 'verify_claim4_source'"
+                ),
+            ],
+            cwd=reproduction,
+            check=True,
+        )
+        subprocess.run(
+            [sys.executable, "publication_gate.py"],
+            cwd=reproduction,
+            check=True,
+        )
+
+
+verify_packaged_space_layout()
 
 gate = {
     "paper": "nDfDnsyllY",
@@ -70,6 +129,7 @@ gate = {
     "publication_gate_passed": True,
     "research_node_valid": True,
     "historical_page_hashes_preserved": True,
+    "space_layout_smoke_passed": True,
     "visibility_rows_complete": 6,
 }
 (ROOT / "outputs/publication_gate.json").write_text(
