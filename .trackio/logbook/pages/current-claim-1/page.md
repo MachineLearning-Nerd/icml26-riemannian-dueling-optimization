@@ -46,5 +46,8 @@ Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
 HF `cpu-upgrade`: estimated 8 cores, 64 logical CPUs allocated, BLAS one
 thread; cumulative scientific runtime 1339.44 s.
 
+Reproduced unchanged by the current evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, on HF `cpu-upgrade` (Python 3.12.12, Linux x86_64).
+
 **Limitation.** The empirical grid is finite. It cannot prove a universally
 quantified theorem; that role is limited to the symbolic certificate.

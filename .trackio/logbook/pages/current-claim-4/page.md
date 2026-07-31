@@ -145,9 +145,17 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
   anchors `#S3.Thmtheorem1`, `#S3.Thmtheorem2`
 
 Lemma 3.2 evidence uses seed 20260729; the Lemma 3.1 sweep uses seed 20260731
-with per-cell offsets `20260731 + 1013*index`. Both were regenerated on HF
-`cpu-upgrade` (8 computational cores estimated, 64 logical CPUs allocated,
-BLAS capped at one thread), Python 3.12.
+with per-cell offsets `20260731 + 1013*index`. Evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`,
+Git SHA `1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, HF `cpu-upgrade`: 8 computational cores estimated, 64 logical
+CPUs allocated, BLAS capped at one thread, Python 3.12.12 on
+Linux-6.12.90 x86_64 glibc 2.36. The Lemma 3.1 sweep itself took 9.51 s.
+
+The 13 sweep cells reproduce bit-for-bit on an unrelated macOS arm64 machine,
+because the sweep uses only a platform-independent PCG64 bit stream and
+elementwise arithmetic — no BLAS reduction whose summation order varies by
+architecture. The closed-form `C_hat` values are rounded to 12 decimals for the
+same reason: `lgamma` differs between platform libms in the last one or two
+units in the last place.
 
 **Limitation.** Lemma 3.1 and Lemma 3.2 are universally quantified over `x`,
 `v`, `nu` and `f`. Lemma 3.2's constant is settled exactly in closed form for

@@ -89,7 +89,7 @@
         "empirical_ideal_c_hat": 0.8179435546691812,
         "finite_nu_rows": [
           {
-            "actual_orthogonal_mean_norm": 0.0019067239422328108,
+            "actual_orthogonal_mean_norm": 0.001906723942232811,
             "nu": 0.0001,
             "paired_orthogonal_absolute_lower_95": 0.0,
             "paired_orthogonal_bias": 0.0,
@@ -105,7 +105,7 @@
             "sign_disagreement_rate": 0.065505
           }
         ],
-        "ideal_perpendicular_error": 0.0019067239422328108,
+        "ideal_perpendicular_error": 0.001906723942232811,
         "linear_objective_negative_control": {
           "nu": 0.5,
           "sign_disagreement_rate": 0.0
@@ -125,7 +125,7 @@
             "sign_disagreement_rate": 0.0
           },
           {
-            "actual_orthogonal_mean_norm": 0.027804634515840736,
+            "actual_orthogonal_mean_norm": 0.02780463451584074,
             "nu": 0.5,
             "paired_orthogonal_absolute_lower_95": 0.027440539816909564,
             "paired_orthogonal_bias": 0.027924407749482082,
@@ -432,7 +432,7 @@
     },
     "negative_control_all_violated": true,
     "objective": "f(z)=<g,z>+(L/2)s(<b,z>) with s(t)=t|t|, g=||grad f|| e1, b=e2; Euclidean R^d, Exp_x(v)=x+v",
-    "runtime_seconds": 4.610959958983585,
+    "runtime_seconds": 9.480187488952652,
     "samples_per_cell": 2000000,
     "seed": 20260731,
     "sign_blind_control": {

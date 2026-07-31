@@ -63,10 +63,14 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
 - Source: Section 5.1.1 (Rayleigh quotient, eq. 13) and Section 5.1.2
   (Karcher mean)
 
-Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
-`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seeds 20260735 and 20260740.
-HF `cpu-upgrade`: 64 logical CPUs allocated, BLAS one thread; SPD runtime
-54.00 s.
+Evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA `1a094fdc3edb0dcf785d8e0755ec1029ea47e531`. SPD seeds 20260735 and 20260740; sphere
+held-out seeds 20260751-3 and 20260761-3. HF `cpu-upgrade`: 8 computational
+cores estimated, 64 logical CPUs allocated, BLAS one thread, Python 3.12.12.
+Sphere route runtime 16.21 s; SPD route runtime 54.36 s.
+
+Sphere gaps are reported to four significant digits because the objective uses
+a BLAS matrix-vector product, whose summation order differs across
+architectures; the digits beyond the twelfth are not portable.
 
 **Limitation.** These applications do not prove coverage of every manifold in
 the theorem class; they reproduce the paper's named sphere and SPD scope

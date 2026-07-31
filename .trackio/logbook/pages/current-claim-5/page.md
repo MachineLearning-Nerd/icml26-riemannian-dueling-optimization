@@ -58,14 +58,13 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
 - [Raw result and asset hashes](../../outputs/claim5.json)
 - [Independent artifact checker](../../reproduction/verify_claims.py)
 - [Full application generator](../../reproduction/real_applications.py)
-- Source: Section 5.2.1–5.2.2
+- Source: Section 5.2.1 (attack) and Section 5.2.2 (horizon leveling)
 
 Checkpoint SHA-256 begins `eaeebf42`; CIFAR dataset revision
-`0b2714987fa478483af9968de7c934580d0bb9a2`. Evidence run
-`27332bb6-e56c-42ae-9d9e-4b0a885df123`, Git SHA
-`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seed 20260730. HF `cpu-upgrade`:
-estimated 8 cores, 64 logical CPUs allocated, PyTorch limited to 8 threads;
-route runtime 1154.28 s.
+`0b2714987fa478483af9968de7c934580d0bb9a2`. Evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, seed 20260730. HF `cpu-upgrade`: estimated 8 computational cores, 64
+logical CPUs allocated, PyTorch limited to 8 threads, BLAS one thread, Python
+3.12.12 on Linux x86_64.
 
 **Limitations.** The paper does not identify its VGG checkpoint or evaluated
 indices, so a pinned public CIFAR-10 VGG11-BN checkpoint and the first four

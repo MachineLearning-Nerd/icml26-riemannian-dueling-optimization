@@ -34,7 +34,7 @@
   },
   "dataset": "uoft-cs/cifar10 test split, indices 0-3",
   "dataset_revision": "0b2714987fa478483af9968de7c934580d0bb9a2",
-  "git_sha": "d94d1e7e64e2907c7a8c7a92e1e00dda922fc714",
+  "git_sha": "1a094fdc3edb0dcf785d8e0755ec1029ea47e531",
   "model": "chenyaofo/pytorch-cifar-models:cifar10_vgg11_bn",
   "paper_setting": {
     "batch": 10,
@@ -45,7 +45,7 @@
     "steps": 1000,
     "successful_images": 0
   },
-  "run_id": "27332bb6-e56c-42ae-9d9e-4b0a885df123",
+  "run_id": "b05c7cfe-f022-403d-881a-773c407c28ac",
   "seed": 20260730,
   "so2": {
     "dataset_scope": "19 deterministic tilt angles spanning the paper figure range; HLW (Workman et al., 2016) releases images and horizon annotations only through a per-requester access form at https://mvrl.cse.wustl.edu/datasets/hlw/, so R_tilt is not derived from human annotations. f(R) depends on R_tilt alone.",
