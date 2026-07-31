@@ -30,6 +30,7 @@ uses calibrated `nu`, `eta`, radius, and margin objective, and licensed HLW
 pixels are unavailable. No GPU was used.
 
 [Detailed visual report](reports/reproduction/report.md) ·
+[Final release audit](reports/release/report.md) ·
 [Evaluator entrypoint](.trackio/logbook/pages/current-verification/page.md) ·
 [Tutorial notebook](notebooks/riemannian_dueling_reproduction.py)
 

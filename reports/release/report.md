@@ -1,173 +1,112 @@
-# Release forecast — Riemannian Dueling Optimization
+# Reference-aligned six-claim release
 
 - Previous live judged score: `3/12`
-- Conservative projected score range after the proposed change: `9/12–12/12`
-- Best-supported possible new score: `12/12` **forecast, not a judge result**
+- Conservative projected score range after the change: `10/12–12/12`
+- Best-supported possible new score: `12/12` **forecast only**
+
+The live verdict dataset still points to judged Space revision
+`8b6af91db9ee5e195f24aec73e9d96bb304113fc`, judged on
+2026-07-30. The new revision has not been judged.
 
 | Claim | Current points | Possible points | Confidence | Evidence status | Basis and remaining risk |
 | --- | ---: | ---: | --- | --- | --- |
-| 1 | 0 | 2 | HIGH | VERIFIED | SymPy certificates reconstruct both rates; 18/18 held-out RDNGD cells pass. Risk: evaluator interpretation of proof scope. |
-| 2 | 0 | 2 | HIGH | VERIFIED intended; printed defect FALSIFIED | Corrected RRDNGD slopes are near -1 bit/phase with dimension-linear cost; literal schedule fails a valid counterexample. |
-| 3 | 0 | 2 | HIGH | VERIFIED | Symbolic oracle sum plus actual zero-projection RDFW sweep. Risk: `d=3` is floor-limited and excluded from the slope conclusion. |
-| 4 | 2 | 2 | HIGH | FALSIFIED AS WRITTEN; ideal VERIFIED | Existing full-credit ideal Monte Carlo is preserved; finite-nu paired-bias lower bounds remain strictly positive with two zero-disagreement controls. |
-| 5 | 0 | 2 | MEDIUM | VERIFIED for mechanism | Pinned VGG sphere attack succeeds 3/4 and `SO(2)` succeeds 19/19. Risk: calibrated settings differ and licensed HLW pixels are unavailable. |
-| 6 | 1 | 2 | HIGH | VERIFIED for scope | Actual comparison-only RDNGD on dense noncommuting SPD inputs at paper dimensions. Risk: application evidence does not prove every manifold class. |
+| 1 | 0/2 | 2/2 | HIGH | VERIFIED | Symbolic upper-bound certificate and 18 held-out RDNGD cells; finite experiments alone do not prove universal scope. |
+| 2 | 0/2 | 2/2 | HIGH | VERIFIED | Corrected RRDNGD slopes are -1.003, -0.995, and -1.039 with dimension-linear phase cost; the printed schedule is separately FALSIFIED. |
+| 3 | 0/2 | 2/2 | HIGH | VERIFIED | Named projection-free RDFW sweep, reversed-sign control, and exact oracle-sum certificate. |
+| 4 | 2/2 | 2/2 | HIGH | FALSIFIED | The ideal identity remains VERIFIED; an assumption-satisfying finite-ν counterexample falsifies unqualified finite-perturbation unbiasedness. |
+| 5 | 0/2 | 2/2 | MEDIUM | VERIFIED | Comparison-only VGG attack changes 3/4 predictions and SO(2) succeeds 19/19; checkpoint/settings substitutions and unavailable licensed HLW pixels remain explicit. |
+| 6 | 1/2 | 2/2 | HIGH | VERIFIED | Dense noncommuting SPD RDNGD at n=5,10 and m=50 reaches relative reference gaps below 2.5e-5. |
 
-Current total score: `3/12`.
+Current total score: 3/12. Claims 1–3 and 5–6 gained direct evidence; Claim 4
+was strengthened with exact finite-ν adjudication. No whole claim remains
+BLOCKED. The exact paper-setting attack and licensed HLW-image route remain
+limited subroutes.
 
-Conservative projected total score range: `9/12–12/12`.
+## Publication
 
-Best-supported possible total score: `12/12` forecast only.
+- Existing Space only: `DineshAI/nDfDnsyllY`
+- Previous Space head: `d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b`
+- Published Space revision:
+  `889b4f1b32262f52aef3553ea5cc1daa5d0d57c1`
+- Winning experiment branch: `orx/evaluator-blind-audit-transcript`
+- Winning Git SHA: `772a4d264cc633d2ecd91008a87b78cb3d828c49`
+- Winning HF run: `5e3afd6e-cb47-4358-b619-a75887ba7475`
+- GitHub exact-path mirror commit:
+  `08d1a20b15dcfa91ba57edee61223a0b05e6759a`
+- State: awaiting live judge
 
-Claims 1, 2, 3, 5, and 6 have materially changed since the previous judge
-result. Claim 4's prior ideal-estimator evidence is preserved and rerun, with
-an added finite-perturbation falsification route.
-
-No overall claim remains BLOCKED. The exact-setting Claim 5 attack subroute is
-BLOCKED at 0/2 images, and the HLW image route is unavailable because the
-dataset requires a separate non-transferable license. Those limitations remain
-inline on the canonical page.
-
-Publication is complete. A text-only commit was made to the existing
-`DineshAI/nDfDnsyllY` Space; no second Space was created. The exact published
-revision is `d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b`. It was downloaded into a
-fresh directory, all uploaded hashes were checked, and the evaluator-visible
-traversal passed. The paper is awaiting the live judge.
-
-## Evaluator visibility matrix
-
-| Claim | Canonical page | Code visible | Data inline | Raw link | Checker | Control | Exact claim tested | Reviewer verdict |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `current-claim-1` | yes | yes | yes | yes | yes | yes | VERIFIED |
-| 2 | `current-claim-2` | yes | yes | yes | yes | yes | yes | VERIFIED intended; printed defect FALSIFIED |
-| 3 | `current-claim-3` | yes | yes | yes | yes | yes | yes | VERIFIED |
-| 4 | `current-claim-4` | yes | yes | yes | yes | yes | yes | FALSIFIED AS WRITTEN; ideal VERIFIED |
-| 5 | `current-claim-5` | yes | yes | yes | yes | yes | yes, deviations inline | VERIFIED mechanism |
-| 6 | `current-claim-6` | yes | yes | yes | yes | yes | yes | VERIFIED scope |
-
-## Release identity
-
-- Baseline branch and initial SHA: `main` at
-  `bf02817115e1c048edb33f8c4db8419ec0653cb8`
-- Previous HF Head and Judge Head:
-  `8b6af91db9ee5e195f24aec73e9d96bb304113fc`
-- Winning experiment:
-  `orx/evaluator-visible-cumulative-release-candidate`
-- Winning scientific SHA:
-  `73c4b84239cbcc71549f64c22ce0dcd7700c64e5`
-- Winning run: `c7711be1-ba38-4dce-af0d-503b167f27d8`
-- Published HF revision:
-  `d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b`
-- GitHub `main` after the exact Space mirror:
-  `f063e5fd8c462a7a368ea82199d49034161970c7`
-
-The fixed command inherited by every experiment was:
-
-```console
-uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
-```
-
-Every remote run used Hugging Face `cpu-upgrade` with
-`ghcr.io/astral-sh/uv:python3.12-bookworm-slim`. The winning run estimated
-eight computational cores, received 64 logical CPUs, restricted PyTorch to
-eight threads and BLAS to one thread, and recorded 232.086 seconds of
-scientific runtime (259 seconds wall time).
+The upload used the Hugging Face commit API with a parent-head assertion and
+exactly 28 UTF-8 text additions. No Space was created.
 
 ## Experiment tree
 
-The campaign grew downward from the frozen judged baseline:
+The frozen baseline descended through theorem contracts, executable
+RDNGD/RRDNGD/RDFW, dense SPD, paper-setting and calibrated applications,
+held-out calibration, the evaluator-visible candidate, finite-ν estimator
+adjudication, six-claim alignment, self-contained Space packaging, and the
+final evaluator-blind transcript node. Completed experiment branches were
+never rewritten.
 
-1. judged baseline;
-2. Claim 4 preservation and executable contract;
-3. calibrated RDNGD, RRDNGD, and RDFW implementations;
-4. theorem contracts and the RRDNGD source audit;
-5. combined cumulative verifier;
-6. dense noncommuting SPD Karcher experiment;
-7. exact paper-setting CPU applications;
-8. calibrated VGG sphere attack and `SO(2)` leveling;
-9. held-out Claim 1 resource calibration;
-10. evaluator-visible cumulative release candidate.
+Every node inherited exactly:
 
-Every accepted child reran the previously accepted checks. The final
-cumulative run passed all scientific checks and the publication gate.
-
-## Claim results
-
-- Claim 1 — **VERIFIED**: independently reconstructed symbolic certificates
-  and 18/18 held-out RDNGD resource cells.
-- Claim 2 — **FALSIFIED as printed**: an assumption-satisfying exact
-  counterexample fails the printed recurrent schedule; the corrected
-  Appendix-F schedule is the passing control. This does not claim that all
-  possible corrected formulations are false.
-- Claim 3 — **VERIFIED**: symbolic oracle accounting and an actual
-  projection-free RDFW sweep.
-- Claim 4 — **VERIFIED**: the prior full-credit Monte Carlo check is preserved,
-  rerun, and checked independently.
-- Claim 5 — **VERIFIED for the comparison-only mechanism**: the calibrated
-  pinned VGG attack succeeds on 3/4 images and the `SO(2)` experiment succeeds
-  on 19/19. Exact paper settings and licensed HLW pixels remain explicit
-  limitations.
-- Claim 6 — **VERIFIED for the stated synthetic applications**: real
-  comparison-only runs cover the sphere and dense, noncommuting SPD Karcher
-  instances at the paper dimensions.
-
-## Runtime and cost
-
-All 16 experiment attempts used HF `cpu-upgrade`. Their displayed wall times
-sum to 3,454 seconds (57 minutes 34 seconds), including six diagnostic or
-environmental failures. Per-job minute rounding gives 67 billable minutes.
-At the published `cpu-upgrade` price of USD 0.03/hour, the estimated campaign
-compute charge is **USD 0.0335**. The exact invoice is not exposed by `orx`.
-Successful runs account for 21 minutes 20 seconds of displayed wall time;
-the remainder is primarily the failed first CIFAR download attempt.
-
-Local execution was limited to one-core, sub-five-minute inspection,
-hashing, syntax checks, report generation, and `marimo check`. No local
-training or multithreaded experiment was run.
-
-## Commands and evidence
-
-The scientific command above is copied verbatim from `orx exp status`. The
-orchestration and release command sequence was:
-
-```console
-orx skill
-orx skill orx-experiment-tree
-orx skill orx-evidence
-orx skill orx-git
-orx skill orx-compute
-orx projects --json
-orx runs f417b2c7-9ee1-470d-94c9-312c62d71454
-orx create-experiment f417b2c7-9ee1-470d-94c9-312c62d71454 ...
-orx exp run <experiment-id> --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
-orx exp wait <experiment-id> --timeout 480
-orx logs <run-id>
-orx exp desc <experiment-id> --set <evidence-summary>
-uv run --locked marimo check --strict notebooks/riemannian_dueling_reproduction.py
-git ls-remote origin refs/heads/main
+```bash
+uv run --locked python repro/src/verify.py && uv run --locked python repro/src/publication_gate.py
 ```
 
-The omitted arguments in `create-experiment`, and the concrete experiment and
-run IDs, are preserved in the OpenResearch tree descriptions and run table;
-they do not alter the fixed scientific command. Source retrieval used an
-explicit browser User-Agent. The paper HTML was retrieved on 2026-07-30 with
-SHA-256
-`1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323`.
+Final release-oriented launches were:
 
-Durable internal evidence is under `.openresearch/artifacts/claim1` through
-`.openresearch/artifacts/claim6`. Evaluator-visible evidence begins at
-`logbook.json`, leads to `pages/current-verification/page.md`, and exposes the
-canonical claim pages, raw JSON, current checkers, controls, environment lock,
-CPU allocation, runtime, seeds, limitations, and source anchors.
+```bash
+orx exp run d690eceb-d43d-409a-8fa0-8828a3c383d6 --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+orx exp run ac5dcf1e-ea84-45dc-bf8c-6e89185e7755 --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+orx exp run e7e5d0d5-ded1-4c21-a233-1e374e8a024e --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+orx exp run 8d5d70fd-4185-4777-925f-1ff72c2e1037 --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+orx exp run 75054272-f088-41c8-b52b-c8e7b780200c --flavor cpu-upgrade --image ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+```
 
-## Preservation and upload audit
+The candidate was built and checked with:
 
-The exact judged Space tree contained 21 files. The published tree contains
-46 files; all 21 judged files are an unchanged subset, including historical
-page hashes. Current verification appears first in navigation and the former
-default page is labeled `Historical rejected baseline`.
+```bash
+uv run --locked python repro/src/package_space.py <exact-current-clone> <candidate>
+python reproduction/verify_claims.py
+python reproduction/verify_claim4.py
+cd reproduction && uv run --locked python cumulative_verify.py && uv run --locked python publication_gate.py
+```
 
-The exact text-only upload allowlist was:
+`orx exp status`, `orx exp wait`, `orx runs`, and `orx logs` supplied the
+recorded branch, terminal-state, runtime, and claim evidence. Read-only Git,
+`rg`, `jq`, SHA-256, JSON, import, subset, secret, and navigation checks were
+used for the release audit.
+
+## Compute and cost
+
+The winning run estimated 8 computational cores, received 64 logical CPUs on
+HF `cpu-upgrade`, used no GPU, and reported 473.5088 seconds of scientific
+runtime. HF reported 507 running seconds. At the documented USD 0.03/hour,
+minute-rounded cost is approximately USD 0.0045.
+
+Across 22 HF `cpu-upgrade` attempts, displayed wall time totals 6,853 seconds
+(114.22 minutes). Treating all displayed time as billable gives a conservative
+cost upper estimate of USD 0.0571; the exact invoice is not exposed by `orx`.
+Local work was limited to short single-core syntax, static-checker, packaging,
+hash, and traversal tasks; no scientific experiment ran locally.
+
+## Release audit
+
+- Exact current Space clone: 46 files.
+- Exact published clone: 48 files.
+- Old/current file-set subset: 46/46 paths present.
+- Immutable judged historical page hashes: preserved.
+- Uploaded hashes: 28/28 match `candidate_manifest.sha256`.
+- Static Claim 1–6 checker: passed.
+- Finite-ν Claim 4 checker: passed.
+- Packaged-Space root/import smoke: passed.
+- Secret pattern scan: passed.
+- Evaluator-blind traversal: passed, 23 files opened and enumerated on the
+  canonical visibility page.
+- Current verifier is the `logbook.json` root; historical rejected evidence is
+  nested beneath it.
+
+## Exact upload allowlist
 
 ```text
 logbook.json
@@ -192,14 +131,10 @@ reproduction/empirical_algorithms.py
 reproduction/real_applications.py
 reproduction/theorem_audit.py
 reproduction/verify_claim4_source.py
+reproduction/finite_nu_estimator.py
 reproduction/cumulative_verify.py
 reproduction/publication_gate.py
+reproduction/protected_space_8b6af91_manifest.sha256
 reproduction/pyproject.toml
 reproduction/uv.lock
 ```
-
-The upload used the Hugging Face text API with the judged revision asserted as
-the parent. Post-publication verification checked all 26 uploaded hashes,
-reran both evaluator-visible checkers, traversed 22 reachable files from the
-canonical entrypoint, matched displayed values to raw data, and repeated the
-historical subset test. Result: `POST_PUBLISH_PASS`.
