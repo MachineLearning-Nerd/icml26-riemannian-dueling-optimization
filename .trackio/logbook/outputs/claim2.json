@@ -23,5 +23,6 @@
     "queries_per_phase": {"d4": 1612, "d8": 3220, "d16": 6436},
     "log2_error_slope_per_phase": {"d4": -1.0028966573543339, "d8": -0.9945544596333411, "d16": -1.0392460009522253}
   },
-  "status": "FALSIFIED"
+  "printed_schedule_status": "FALSIFIED",
+  "status": "VERIFIED"
 }

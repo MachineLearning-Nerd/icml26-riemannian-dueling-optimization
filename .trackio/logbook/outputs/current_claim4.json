@@ -5,6 +5,67 @@
     {"C_hat": 0.8016904228056723, "d": 100, "perpendicular_error": 0.0035109501913837635}
   ],
   "evidence_commit": "699185628f09c4d8ed78e76c2029e873e3facb74",
+  "finite_nu_bias": {
+    "assumption_audit": {
+      "curvature": 0,
+      "gradient_at_x_nonzero": true,
+      "gradient_lipschitz_upper_bound": "20d",
+      "manifold": "Euclidean unit ball",
+      "probe_points_inside_domain": true,
+      "smooth_on_domain": true
+    },
+    "dimensions": [
+      {
+        "d": 2,
+        "empirical_ideal_c_hat": 0.8998464927065501,
+        "finite_nu_rows": [
+          {"actual_orthogonal_mean_norm": 0.0002961361426171099, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
+          {"actual_orthogonal_mean_norm": 0.14981157882979484, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.14670015094209887, "paired_orthogonal_bias": 0.14951544268717898, "paired_orthogonal_standard_error": 0.0014363733393265802, "sign_disagreement_rate": 0.075465}
+        ],
+        "ideal_perpendicular_error": 0.0002961361426171099,
+        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "samples": 200000
+      },
+      {
+        "d": 5,
+        "empirical_ideal_c_hat": 0.8388288066591341,
+        "finite_nu_rows": [
+          {"actual_orthogonal_mean_norm": 0.002227191990623547, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
+          {"actual_orthogonal_mean_norm": 0.09117209403158165, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.08963671309457812, "paired_orthogonal_bias": 0.09122026128402179, "paired_orthogonal_standard_error": 0.0008079327497161576, "sign_disagreement_rate": 0.06776}
+        ],
+        "ideal_perpendicular_error": 0.002227191990623547,
+        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "samples": 200000
+      },
+      {
+        "d": 10,
+        "empirical_ideal_c_hat": 0.8179435546691812,
+        "finite_nu_rows": [
+          {"actual_orthogonal_mean_norm": 0.001906723942232811, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
+          {"actual_orthogonal_mean_norm": 0.0642552533705058, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.06253672257695898, "paired_orthogonal_bias": 0.06374641849175203, "paired_orthogonal_standard_error": 0.0006171917932617535, "sign_disagreement_rate": 0.065505}
+        ],
+        "ideal_perpendicular_error": 0.001906723942232811,
+        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "samples": 200000
+      },
+      {
+        "d": 50,
+        "empirical_ideal_c_hat": 0.8026716514223877,
+        "finite_nu_rows": [
+          {"actual_orthogonal_mean_norm": 0.002094750213033707, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
+          {"actual_orthogonal_mean_norm": 0.02780463451584074, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.027440539816909564, "paired_orthogonal_bias": 0.027924407749482082, "paired_orthogonal_standard_error": 0.0002468713941696514, "sign_disagreement_rate": 0.062695}
+        ],
+        "ideal_perpendicular_error": 0.002094750213033707,
+        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "samples": 200000
+      }
+    ],
+    "finite_perturbation_status": "FALSIFIED_AS_WRITTEN",
+    "ideal_estimator_status": "VERIFIED",
+    "objective": "f(z)=e1^T z + (20d/6)(a^T z)^3, a=(e1+e2)/sqrt(2), evaluated at x=0",
+    "samples_per_dimension": 200000,
+    "seed": 20260731
+  },
   "run_id": "aa0bd0f6-283a-4c33-80f7-9a1b7862dc6d",
   "samples_per_dimension": 80000,
   "seed": 20260729

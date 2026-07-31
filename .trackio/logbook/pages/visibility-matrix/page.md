@@ -7,9 +7,9 @@ fixed command, environment, CPU/runtime, limitations, and links below.
 | Claim | Canonical page | Code visible | Data inline | Raw link | Checker | Control | Exact claim tested | Reviewer verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | [Claim 1](#/current-claim-1) | generator + certificate | yes | `outputs/claim1.json` | `verify_claims.py` | discarded/reversed signs | yes | VERIFIED |
-| 2 | [Claim 2](#/current-claim-2) | counterexample + control | yes | `outputs/claim2.json` | `verify_claims.py` | Appendix-F schedule | yes | FALSIFIED as printed |
+| 2 | [Claim 2](#/current-claim-2) | RRDNGD + counterexample | yes | `outputs/claim2.json` | `verify_claims.py` | printed vs Appendix-F schedules | yes | VERIFIED intended; printed defect FALSIFIED |
 | 3 | [Claim 3](#/current-claim-3) | RDFW + certificate | yes | `outputs/claim3.json` | `verify_claims.py` | reversed signs | yes | VERIFIED |
-| 4 | [Claim 4](#/current-claim-4) | estimator + analytic checker | yes | `outputs/current_claim4.json` | two checkers | unsigned antithetic | yes | VERIFIED |
+| 4 | [Claim 4](#/current-claim-4) | ideal + finite-nu estimators | yes | `outputs/current_claim4.json` | two checkers | small-nu, linear, antithetic | yes | FALSIFIED AS WRITTEN; ideal VERIFIED |
 | 5 | [Claim 5](#/current-claim-5) | attack + SO(2) | yes | `outputs/claim5.json` | `verify_claims.py` | reversed signs | yes, deviations explicit | VERIFIED mechanism |
 | 6 | [Claim 6](#/current-claim-6) | dense SPD RDNGD | yes | `outputs/claim6.json` | `verify_claims.py` | reversed signs | yes | VERIFIED scope |
 

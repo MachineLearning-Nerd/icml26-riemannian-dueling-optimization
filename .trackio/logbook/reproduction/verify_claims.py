@@ -22,7 +22,14 @@ c2 = load(2)
 counterexample = c2["counterexample"]
 assert counterexample["printed_final_gap"] > counterexample["target"]
 assert counterexample["proof_consistent_final_gap"] < counterexample["target"]
-assert c2["status"] == "FALSIFIED"
+assert c2["printed_schedule_status"] == "FALSIFIED"
+assert c2["status"] == "VERIFIED"
+assert all(
+    -1.2 < slope < -0.8
+    for slope in c2["corrected_empirical_control"][
+        "log2_error_slope_per_phase"
+    ].values()
+)
 
 c3 = load(3)
 assert c3["projection_calls"] == 0

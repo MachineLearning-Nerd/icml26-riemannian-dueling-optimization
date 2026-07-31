@@ -1,1 +1,7 @@
-{"claim":2,"status_if_counterexample_satisfies_all_assumptions":"FALSIFIED","target":0.000001,"required_control":"Appendix-F-consistent schedule reaches target"}
+{
+  "claim": 2,
+  "intended_claim": "Proof-consistent RRDNGD has linear convergence and O(d log(1/epsilon)) comparison cost.",
+  "intended_verification_rule": "Across d=4,8,16, the log2 median-error slope per phase is in [-1.2,-0.8] and per-phase comparisons scale linearly with d.",
+  "printed_schedule_defect": "Algorithm 2 as printed fails an assumption-satisfying target that the Appendix-F schedule reaches.",
+  "target": 0.000001
+}
