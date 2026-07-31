@@ -17,7 +17,10 @@ def exact_c_hat(d: int) -> float:
 
 def verify() -> dict:
     raw = json.loads(
-        (ROOT / ".openresearch/artifacts/claim4/raw.json").read_text()
+        (
+            ROOT
+            / ".trackio/logbook/outputs/current_claim4.json"
+        ).read_text()
     )
     control = json.loads(
         (
