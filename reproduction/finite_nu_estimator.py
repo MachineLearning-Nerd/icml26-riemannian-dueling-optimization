@@ -112,7 +112,16 @@ def verify() -> dict:
         },
         "dimensions": dimensions,
         "ideal_estimator_status": "VERIFIED",
-        "finite_perturbation_status": "FALSIFIED_AS_WRITTEN",
+        "finite_perturbation_status": "CONSISTENT_WITH_LEMMA_3_1",
+        "superseded_by": "lemma31_perturbation.py",
+        "correction_note": (
+            "These cells use L=20d, ||grad f||=1 and nu=0.5, so Lemma 3.1's "
+            "gamma_x = sqrt(d/2pi)*L*nu/||grad f|| equals 11.28 (d=2) through "
+            "1410.47 (d=50). A probability lower bound of 1-gamma_x is vacuous "
+            "there, so the measured disagreement is consistent with Lemma 3.1 "
+            "and must not be reported as a falsification. Lemma 3.1 is tested "
+            "in the non-vacuous gamma_x<1 regime by lemma31_perturbation.py."
+        ),
     }
     current = json.loads(OUTPUT.read_text())
     current["finite_nu_bias"] = result

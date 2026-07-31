@@ -31,6 +31,9 @@ An exact counterexample satisfies every stated assumption:
 interior optimum zero, and nonexpansive projection. At target `1e-6`, 42
 phases of 203 iterations consume 17,052 comparisons.
 
+**Negative control.** The two schedules are run head-to-head on identical
+seeds, iterate counts and oracle budgets, so only the schedule differs:
+
 | Schedule | final gap | meets `1e-6` |
 | --- | ---: | --- |
 | Algorithm 2 as printed | `8.024201e-5` | no |
@@ -53,6 +56,9 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
 Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
 `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, deterministic seed root
 20260729, HF `cpu-upgrade`, cumulative runtime 1339.44 s.
+
+Reproduced unchanged by the current evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, on HF `cpu-upgrade` (Python 3.12.12, Linux x86_64).
 
 **Limitation.** The broad complexity verdict uses the proof-consistent schedule
 required by Appendix F. The literal Algorithm 2 schedule is separately

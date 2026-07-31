@@ -23,9 +23,12 @@ rule was the first horizon whose one-sided 95% calibration bound was below
 | 8 | .35 / .25 / .18 | 32 / 32 / 128 | .2346 / .2346 / .1519 |
 | 16 | .35 / .25 / .18 | 32 / 128 / 256 | .2717 / .1940 / .1490 |
 
-All 9/9 nonconvex and 9/9 convex held-out cells satisfy their target. Discarding
-comparisons leaves gradient norm `0.3120 > 0.18`; reversing convex comparisons
-leaves suboptimality `1.125 > 0.02`.
+All 9/9 nonconvex and 9/9 convex held-out cells satisfy their target.
+
+**Negative controls.** Discarding the comparison outcomes leaves gradient norm
+`0.3120 > 0.18`, and reversing the convex comparisons leaves suboptimality
+`1.125 > 0.02`. Both fail for the intended reason: without a usable sign the
+iterate has no descent information.
 
 **Reproduce.**
 
@@ -45,6 +48,9 @@ Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
 `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seed root 20260729.
 HF `cpu-upgrade`: estimated 8 cores, 64 logical CPUs allocated, BLAS one
 thread; cumulative scientific runtime 1339.44 s.
+
+Reproduced unchanged by the current evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, on HF `cpu-upgrade` (Python 3.12.12, Linux x86_64).
 
 **Limitation.** The empirical grid is finite. It cannot prove a universally
 quantified theorem; that role is limited to the symbolic certificate.

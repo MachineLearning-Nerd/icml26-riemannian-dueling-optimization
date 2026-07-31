@@ -18,16 +18,38 @@ four predictions in 1,000 steps (40,000 main duels):
 | 2 | 9.561 | -9.718 | yes |
 | 3 | 10.270 | -6.702 | yes |
 
-Maximum sphere-radius error was `7.15e-7`. Reversed comparison signs increased
-the control margin from `1.860` to `12.700`, failing the attack as intended.
+Maximum sphere-radius error was `7.15e-7`.
+
+**Negative controls.** Reversing the comparison signs increases the control
+margin from `1.860` to `12.700`, i.e. the attack fails as intended; on the
+`SO(2)` route reversed signs leave a maximum best loss of `0.3982` against
+`0.0` normally.
 
 The paper-setting route (`nu=eta=1e-6`, 1,000 steps, batch 10,
 radius `0.05||image||`) changed 0/2 labels and remains **BLOCKED**, not
 falsified. The successful route used `nu=.01`, `eta=.04`, radius `.5`, and
 true-label logit margin.
 
-The exact `SO(2)` optimizer corrected all 19 deterministic tilts below `1e-5`
-in 100 comparison-only steps. Reversed signs left maximum best loss `0.1991`.
+For horizon leveling, the paper minimizes
+`f(R) = ||R R_tilt - I||_F^2` over `SO(2)` and states plainly that, although
+dueling feedback "could be obtained from human comparisons", it uses `f(R)`
+itself as "a scalable and reproducible surrogate for human preference". This
+route therefore uses **the paper's own oracle**, not a substitute for it: the
+comparison returns whichever of two rotations has the smaller `f`, and function
+values are never revealed. The paper's exact protocol `T = 100`, `nu = 1e-6`,
+`eta = 1e-2` is used unchanged.
+
+All 19 tilts were corrected to a best loss of exactly `0.0` (below the `1e-5`
+threshold) in 100 comparison-only steps. Reversing the signs leaves a maximum
+best loss of `0.3982`.
+
+The one deviation is the source of `R_tilt`. HLW (Workman et al., 2016)
+distributes its images *and* its horizon annotations only through a
+per-requester access form at `https://mvrl.cse.wustl.edu/datasets/hlw/`, which
+was verified to be the sole distribution route, so `R_tilt` could not be
+computed from the human annotations. Since `f(R)` depends on `R_tilt` alone and
+on no image pixels, 19 deterministic tilt angles spanning the paper's figure
+range are substituted; every other element of the experiment is the paper's.
 
 **Reproduce.**
 
@@ -40,15 +62,18 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
 - [Raw result and asset hashes](../../outputs/claim5.json)
 - [Independent artifact checker](../../reproduction/verify_claims.py)
 - [Full application generator](../../reproduction/real_applications.py)
-- Source: Section 5.2.1–5.2.2
+- Source: Section 5.2.1 (attack) and Section 5.2.2 (horizon leveling)
 
 Checkpoint SHA-256 begins `eaeebf42`; CIFAR dataset revision
-`0b2714987fa478483af9968de7c934580d0bb9a2`. Evidence run
-`27332bb6-e56c-42ae-9d9e-4b0a885df123`, Git SHA
-`d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seed 20260730. HF `cpu-upgrade`:
-estimated 8 cores, 64 logical CPUs allocated, PyTorch limited to 8 threads;
-route runtime 1154.28 s.
+`0b2714987fa478483af9968de7c934580d0bb9a2`. Evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, seed 20260730. HF `cpu-upgrade`: estimated 8 computational cores, 64
+logical CPUs allocated, PyTorch limited to 8 threads, BLAS one thread, Python
+3.12.12 on Linux x86_64.
 
-**Limitations.** The paper does not identify its checkpoint or indices. HLW
-pixels require a separate non-transferable license, so the `SO(2)` route uses
-deterministic tilt annotations and is not labeled an HLW-image reproduction.
+**Limitations.** The paper does not identify its VGG checkpoint or evaluated
+indices, so a pinned public CIFAR-10 VGG11-BN checkpoint and the first four
+correctly-classified test inputs are used. The paper-setting attack route
+(`nu = eta = 1e-6`) remains BLOCKED, not falsified. The `SO(2)` route
+reproduces the paper's objective, oracle and protocol exactly but substitutes
+deterministic tilt angles for HLW's request-gated human annotations, so it is
+not labelled an HLW-image reproduction.

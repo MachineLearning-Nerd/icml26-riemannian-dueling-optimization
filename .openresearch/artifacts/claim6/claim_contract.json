@@ -1,7 +1,7 @@
 {
   "claim": 6,
+  "non_circularity": "The paper fixes no step schedule for this experiment. eta_k = 1.5/(k+25)^0.75 was selected on calibration seeds 20260741 and 20260742; all reported rows use held-out seeds 2026075x and 2026076x, which were not inspected during selection.",
   "paper": "2603.00023",
-  "status_if_all_checks_pass": "VERIFIED",
   "required_checks": [
     "Run comparison-only RDNGD on dense noncommuting SPD inputs at n=5,10 and m=50",
     "Decrease the affine-invariant Karcher objective by at least 1%",
@@ -9,5 +9,13 @@
     "Preserve positive definiteness",
     "Make reversed comparison signs increase the objective"
   ],
-  "universal_scope": false
+  "source_contract": {
+    "sphere_rayleigh": "Section 5.1.1 eq. (13): min over the unit sphere of f(x) = -1/2 x^T A x, with B_ij ~ N(0,1/d) i.i.d., A = 1/2(B+B^T), L = lambda_max(A)-lambda_min(A) and f* = -1/2 lambda_max(A)."
+  },
+  "status_if_all_checks_pass": "VERIFIED",
+  "universal_scope": false,
+  "verdict_rule": {
+    "sphere_controls": "Reversing the comparison signs must leave a gap no better than the starting gap.",
+    "sphere_pass": "Comparison-only RDNGD at d=100 and d=150 with nu=1e-6 and 50,000 duels reaches an optimality gap below 1e-4 on every held-out seed, stays on the sphere to within 1e-12, uses no projection, and never exposes function values to the update."
+  }
 }

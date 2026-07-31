@@ -11,9 +11,9 @@ evaluates this revision.
 | 1 | **VERIFIED** | [Symbolic certificate + 18 held-out RDNGD cells](#/current-claim-1) |
 | 2 | **VERIFIED intended theorem; printed schedule FALSIFIED** | [RRDNGD slopes, oracle counts, and source defect](#/current-claim-2) |
 | 3 | **VERIFIED** | [Executable projection-free RDFW sweep](#/current-claim-3) |
-| 4 | **FALSIFIED AS WRITTEN; ideal estimator VERIFIED** | [Finite-nu counterexample + ideal-estimator checker](#/current-claim-4) |
+| 4 | **VERIFIED** | [Lemma 3.1 non-vacuous gamma_x sweep + Lemma 3.2 ideal estimator and improved constants](#/current-claim-4) |
 | 5 | **VERIFIED for application mechanism** | [VGG sphere attack + SO(2), with deviations](#/current-claim-5) |
-| 6 | **VERIFIED for application scope** | [Dense noncommuting SPD RDNGD](#/current-claim-6) |
+| 6 | **VERIFIED for application scope** | [Sphere Rayleigh RDNGD on held-out seeds + dense noncommuting SPD RDNGD](#/current-claim-6) |
 
 ## Navigation
 
@@ -41,7 +41,7 @@ From a downloaded Space revision, the self-contained equivalent is:
 cd reproduction && uv run --locked python cumulative_verify.py && uv run --locked python publication_gate.py
 ```
 
-Winning scientific evidence: run `27332bb6-e56c-42ae-9d9e-4b0a885df123`,
-Git SHA `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, HF `cpu-upgrade`,
+Winning scientific evidence: run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA `1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, HF `cpu-upgrade`,
 estimated 8 computational cores, 64 logical CPUs allocated, PyTorch 8 threads,
-BLAS one thread, scientific runtime 1339.44 s.
+BLAS one thread, Python 3.12.12 on Linux-6.12.90 x86_64 (glibc 2.36).
+Total job wall time 6m10s.

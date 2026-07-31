@@ -500,7 +500,8 @@ def horizon_route(reverse: bool = False) -> dict:
         rng = np.random.default_rng(SEED + index)
         correction = 0.0
         best_correction = correction
-        objective = lambda angle: 2 - 2 * math.cos(angle + tilt)
+        # ||R R_tilt - I||_F^2 for 2x2 rotations by (angle + tilt)
+        objective = lambda angle: 4 - 4 * math.cos(angle + tilt)
         best_loss = objective(correction)
         for _ in range(100):
             direction = 1.0 if rng.integers(2) else -1.0
@@ -522,9 +523,19 @@ def horizon_route(reverse: bool = False) -> dict:
             }
         )
     return {
+        "objective": "f(R) = ||R R_tilt - I||_F^2, the paper's stated misalignment cost",
+        "oracle": (
+            "returns the rotation with smaller f; the paper itself uses f as "
+            "'a scalable and reproducible surrogate for human preference', so "
+            "this is the paper's own oracle rather than a substitute"
+        ),
         "dataset_scope": (
-            "19 deterministic tilt annotations spanning the paper figure range; "
-            "HLW pixels are unavailable without accepting a separate license"
+            "19 deterministic tilt angles spanning the paper figure range. HLW "
+            "(Workman et al., 2016) distributes its images and horizon "
+            "annotations only through a per-requester access form at "
+            "https://mvrl.cse.wustl.edu/datasets/hlw/, so R_tilt could not be "
+            "derived from the human annotations; f(R) depends on R_tilt alone, "
+            "so only the tilt source deviates from the paper"
         ),
         "steps": 100,
         "nu": 1e-6,

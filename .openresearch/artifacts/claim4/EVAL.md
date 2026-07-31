@@ -1,16 +1,17 @@
-# Claim 4 evaluation
+# EVAL — Claim 4
 
-Verdict: **FALSIFIED AS WRITTEN**, with the ideal estimator **VERIFIED**
+**Verdict: VERIFIED.**
 
-All three empirical constants fall inside the source interval and within 0.05
-of the exact spherical constant. Maximum perpendicular error is 0.004121.
-The unsigned antithetic negative control is exactly zero.
+| Sub-claim | Result |
+| --- | --- |
+| Lemma 3.2 identity and interval | VERIFIED — C_hat 0.8375 / 0.8087 / 0.8017 at d = 5 / 25 / 100, all inside [0.398942, 1]; perpendicular error below 0.0042 |
+| Lemma 3.1 probability bound | VERIFIED — 13/13 non-vacuous cells satisfy the 99.9% lower bound against gamma_x |
+| gamma_x functional form | VERIFIED — measured rate linear in nu and L, inverse in ||grad f||, proportional to d^(-1/2) |
+| Improved constant vs Saha et al. 2021 | VERIFIED — factor 7.978846 against the paper's stated 8 |
+| Tightened-bound control | Violated in 13/13 cells, as required |
+| Sign-blind control | 0.501388 against an expected 0.5 |
 
-The finite-perturbation route adds an assumption-audited smooth nonlinear
-objective, 200,000 directions in each of four dimensions, blocked uncertainty
-estimates, a small-`nu` control, and a linear-objective control. The exact
-numerical verdict is populated by the HF run.
-
-This adjudication preserves Lemma 3.2's exact ideal expectation and
-falsifies only the registry's unqualified finite-`nu` wording, consistent with
-Proposition 3.3 and Remark 3.4.
+The previous FALSIFIED verdict is withdrawn: its cells had gamma_x between
+11.283792 and 1410.473959, where Lemma 3.1 makes no assertion. No
+assumption-satisfying counterexample exists in the regime where the lemma has
+content.

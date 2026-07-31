@@ -18,8 +18,12 @@ LMO and comparison signs.
 
 Every run used zero projections and stayed feasible. The `d=3` series is
 explicitly floor-limited and is not used to estimate the asymptotic error
-slope. Reversing comparison signs at `d=15,T=80` leaves error `0.532789`,
-versus `0.000374` normally.
+slope.
+
+**Negative control.** Reversing the comparison signs at `d=15, T=80` leaves
+error `0.532789` against `0.000374` normally — three orders of magnitude worse,
+confirming the LMO steps are driven by the oracle and not by the geometry
+alone.
 
 **Reproduce.**
 
@@ -38,6 +42,9 @@ cd reproduction && uv run --locked python cumulative_verify.py && uv run --locke
 Evidence run `27332bb6-e56c-42ae-9d9e-4b0a885df123`, SHA
 `d94d1e7e64e2907c7a8c7a92e1e00dda922fc714`, seed root 20260729,
 HF `cpu-upgrade`; 64 logical CPUs allocated, BLAS one thread.
+
+Reproduced unchanged by the current evidence run `b05c7cfe-f022-403d-881a-773c407c28ac`, Git SHA
+`1a094fdc3edb0dcf785d8e0755ec1029ea47e531`, on HF `cpu-upgrade` (Python 3.12.12, Linux x86_64).
 
 **Limitation.** The finite sweep corroborates the named algorithm. Universal
 complexity is supported by the symbolic certificate, not inferred from four

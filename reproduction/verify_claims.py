@@ -41,11 +41,15 @@ c4 = json.loads((ROOT / "outputs/current_claim4.json").read_text())
 assert all(row["perpendicular_error"] < 0.01 for row in c4["dimensions"])
 finite = c4["finite_nu_bias"]
 assert finite["ideal_estimator_status"] == "VERIFIED"
-assert finite["finite_perturbation_status"] == "FALSIFIED_AS_WRITTEN"
-assert all(
-    dimension["finite_nu_rows"][1]["paired_orthogonal_absolute_lower_95"] > 0.015
-    for dimension in finite["dimensions"]
-)
+assert finite["finite_perturbation_status"] == "CONSISTENT_WITH_LEMMA_3_1"
+lemma31 = c4["lemma_3_1_perturbation"]
+assert lemma31["status"] == "VERIFIED"
+assert lemma31["lemma_3_1_all_cells_non_vacuous"]
+assert lemma31["lemma_3_1_all_cells_hold"]
+assert lemma31["negative_control_all_violated"]
+assert lemma31["sign_blind_control"]["fails_as_intended"]
+assert lemma31["lemma_3_2_improved_constants"]["all_inside_paper_interval"]
+assert lemma31["lemma_3_2_improved_constants"]["improvement_factor_matches_paper"]
 assert all(
     dimension["linear_objective_negative_control"]["sign_disagreement_rate"] == 0
     for dimension in finite["dimensions"]
@@ -56,11 +60,27 @@ assert c5["calibrated_attack"]["successful_images"] >= 2
 assert c5["calibrated_attack"]["maximum_radius_error"] < 0.00001
 assert c5["calibrated_attack"]["reverse_control_margin"]["final"] > c5["calibrated_attack"]["reverse_control_margin"]["initial"]
 assert c5["so2"]["successes_below_1e-5"] == c5["so2"]["tilts"]
+assert c5["so2"]["protocol"] == {"T": 100, "nu": 1e-06, "eta": 0.01,
+                                 "observes": "pairwise signs only"}
+assert c5["so2"]["reverse_control_maximum_best_loss"] > 0.3
 
 c6 = load(6)
 assert all(row["final_objective"] < row["initial_objective"] for row in c6["rows"])
 assert all(row["relative_gap"] < 0.005 for row in c6["rows"])
 assert all(row["reverse_final_objective"] > row["initial_objective"] for row in c6["rows"])
 assert min(c6["minimum_output_eigenvalues"]) > 0
+
+sphere = c6["sphere_rayleigh"]
+assert sphere["status"] == "VERIFIED"
+assert not sphere["function_values_exposed_to_update"]
+assert not sphere["projection_used"]
+assert sphere["all_feasible"]
+assert sphere["controls_fail_as_intended"]
+assert {row["d"] for row in sphere["rows"]} == {100, 150}
+assert all(row["optimality_gap"] < 1e-4 for row in sphere["rows"])
+assert all(row["iterations"] == 50000 for row in sphere["rows"])
+# the reported seeds must be disjoint from the seeds used to pick the schedule
+assert not ({row["seed"] for row in sphere["rows"]}
+            & set(sphere["calibration_seeds"].values()))
 
 print("VERIFIED: cumulative Claim 1-6 artifact checks")

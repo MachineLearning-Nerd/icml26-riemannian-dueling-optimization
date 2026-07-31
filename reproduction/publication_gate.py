@@ -52,6 +52,7 @@ required_page_terms = (
     "checker",
     "Limitation",
     "cpu-upgrade",
+    "Negative control",
 )
 for number in range(1, 7):
     page = LOGBOOK / f"pages/current-claim-{number}/page.md"
@@ -75,8 +76,10 @@ for opened_file in (
     "reproduction/verify_claim4.py",
     "reproduction/verify_claim4_source.py",
     "reproduction/finite_nu_estimator.py",
+    "reproduction/lemma31_perturbation.py",
     "reproduction/real_applications.py",
     "reproduction/dense_spd.py",
+    "reproduction/sphere_rayleigh.py",
 ):
     assert f"`{opened_file}`" in visibility
 assert "conclusion remained unverifiable" in visibility

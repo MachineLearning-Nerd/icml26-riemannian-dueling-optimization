@@ -1,8 +1,20 @@
 {
   "dimensions": [
-    {"C_hat": 0.8375243347562833, "d": 5, "perpendicular_error": 0.002934928663112765},
-    {"C_hat": 0.8086866556496503, "d": 25, "perpendicular_error": 0.0041206350313824774},
-    {"C_hat": 0.8016904228056723, "d": 100, "perpendicular_error": 0.0035109501913837635}
+    {
+      "C_hat": 0.8375243347562833,
+      "d": 5,
+      "perpendicular_error": 0.002934928663112765
+    },
+    {
+      "C_hat": 0.8086866556496503,
+      "d": 25,
+      "perpendicular_error": 0.0041206350313824774
+    },
+    {
+      "C_hat": 0.8016904228056723,
+      "d": 100,
+      "perpendicular_error": 0.0035109501913837635
+    }
   ],
   "evidence_commit": "d94d1e7e64e2907c7a8c7a92e1e00dda922fc714",
   "finite_nu_bias": {
@@ -14,57 +26,458 @@
       "probe_points_inside_domain": true,
       "smooth_on_domain": true
     },
+    "correction_note": "These cells use L=20d, ||grad f||=1 and nu=0.5, so Lemma 3.1's gamma_x = sqrt(d/2pi)*L*nu/||grad f|| equals 11.28 (d=2) through 1410.47 (d=50). A probability lower bound of 1-gamma_x is vacuous there, so the measured disagreement is consistent with Lemma 3.1 and must not be reported as a falsification. Lemma 3.1 is tested in the non-vacuous gamma_x<1 regime by lemma31_perturbation.py.",
     "dimensions": [
       {
         "d": 2,
         "empirical_ideal_c_hat": 0.8998464927065501,
         "finite_nu_rows": [
-          {"actual_orthogonal_mean_norm": 0.0002961361426171099, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
-          {"actual_orthogonal_mean_norm": 0.14981157882979484, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.14670015094209887, "paired_orthogonal_bias": 0.14951544268717898, "paired_orthogonal_standard_error": 0.0014363733393265802, "sign_disagreement_rate": 0.075465}
+          {
+            "actual_orthogonal_mean_norm": 0.0002961361426171099,
+            "nu": 0.0001,
+            "paired_orthogonal_absolute_lower_95": 0.0,
+            "paired_orthogonal_bias": 0.0,
+            "paired_orthogonal_standard_error": 0.0,
+            "sign_disagreement_rate": 0.0
+          },
+          {
+            "actual_orthogonal_mean_norm": 0.14981157882979484,
+            "nu": 0.5,
+            "paired_orthogonal_absolute_lower_95": 0.14670015094209887,
+            "paired_orthogonal_bias": 0.14951544268717898,
+            "paired_orthogonal_standard_error": 0.0014363733393265802,
+            "sign_disagreement_rate": 0.075465
+          }
         ],
         "ideal_perpendicular_error": 0.0002961361426171099,
-        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "linear_objective_negative_control": {
+          "nu": 0.5,
+          "sign_disagreement_rate": 0.0
+        },
         "samples": 200000
       },
       {
         "d": 5,
         "empirical_ideal_c_hat": 0.8388288066591341,
         "finite_nu_rows": [
-          {"actual_orthogonal_mean_norm": 0.002227191990623547, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
-          {"actual_orthogonal_mean_norm": 0.09117209403158165, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.08963671309457812, "paired_orthogonal_bias": 0.09122026128402179, "paired_orthogonal_standard_error": 0.0008079327497161576, "sign_disagreement_rate": 0.06776}
+          {
+            "actual_orthogonal_mean_norm": 0.002227191990623547,
+            "nu": 0.0001,
+            "paired_orthogonal_absolute_lower_95": 0.0,
+            "paired_orthogonal_bias": 0.0,
+            "paired_orthogonal_standard_error": 0.0,
+            "sign_disagreement_rate": 0.0
+          },
+          {
+            "actual_orthogonal_mean_norm": 0.09117209403158165,
+            "nu": 0.5,
+            "paired_orthogonal_absolute_lower_95": 0.08963671309457812,
+            "paired_orthogonal_bias": 0.09122026128402179,
+            "paired_orthogonal_standard_error": 0.0008079327497161576,
+            "sign_disagreement_rate": 0.06776
+          }
         ],
         "ideal_perpendicular_error": 0.002227191990623547,
-        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "linear_objective_negative_control": {
+          "nu": 0.5,
+          "sign_disagreement_rate": 0.0
+        },
         "samples": 200000
       },
       {
         "d": 10,
         "empirical_ideal_c_hat": 0.8179435546691812,
         "finite_nu_rows": [
-          {"actual_orthogonal_mean_norm": 0.001906723942232811, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
-          {"actual_orthogonal_mean_norm": 0.0642552533705058, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.06253672257695898, "paired_orthogonal_bias": 0.06374641849175203, "paired_orthogonal_standard_error": 0.0006171917932617535, "sign_disagreement_rate": 0.065505}
+          {
+            "actual_orthogonal_mean_norm": 0.001906723942232811,
+            "nu": 0.0001,
+            "paired_orthogonal_absolute_lower_95": 0.0,
+            "paired_orthogonal_bias": 0.0,
+            "paired_orthogonal_standard_error": 0.0,
+            "sign_disagreement_rate": 0.0
+          },
+          {
+            "actual_orthogonal_mean_norm": 0.0642552533705058,
+            "nu": 0.5,
+            "paired_orthogonal_absolute_lower_95": 0.06253672257695898,
+            "paired_orthogonal_bias": 0.06374641849175203,
+            "paired_orthogonal_standard_error": 0.0006171917932617535,
+            "sign_disagreement_rate": 0.065505
+          }
         ],
         "ideal_perpendicular_error": 0.001906723942232811,
-        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "linear_objective_negative_control": {
+          "nu": 0.5,
+          "sign_disagreement_rate": 0.0
+        },
         "samples": 200000
       },
       {
         "d": 50,
         "empirical_ideal_c_hat": 0.8026716514223877,
         "finite_nu_rows": [
-          {"actual_orthogonal_mean_norm": 0.002094750213033707, "nu": 0.0001, "paired_orthogonal_absolute_lower_95": 0.0, "paired_orthogonal_bias": 0.0, "paired_orthogonal_standard_error": 0.0, "sign_disagreement_rate": 0.0},
-          {"actual_orthogonal_mean_norm": 0.02780463451584074, "nu": 0.5, "paired_orthogonal_absolute_lower_95": 0.027440539816909564, "paired_orthogonal_bias": 0.027924407749482082, "paired_orthogonal_standard_error": 0.0002468713941696514, "sign_disagreement_rate": 0.062695}
+          {
+            "actual_orthogonal_mean_norm": 0.002094750213033707,
+            "nu": 0.0001,
+            "paired_orthogonal_absolute_lower_95": 0.0,
+            "paired_orthogonal_bias": 0.0,
+            "paired_orthogonal_standard_error": 0.0,
+            "sign_disagreement_rate": 0.0
+          },
+          {
+            "actual_orthogonal_mean_norm": 0.02780463451584074,
+            "nu": 0.5,
+            "paired_orthogonal_absolute_lower_95": 0.027440539816909564,
+            "paired_orthogonal_bias": 0.027924407749482082,
+            "paired_orthogonal_standard_error": 0.0002468713941696514,
+            "sign_disagreement_rate": 0.062695
+          }
         ],
         "ideal_perpendicular_error": 0.002094750213033707,
-        "linear_objective_negative_control": {"nu": 0.5, "sign_disagreement_rate": 0.0},
+        "linear_objective_negative_control": {
+          "nu": 0.5,
+          "sign_disagreement_rate": 0.0
+        },
         "samples": 200000
       }
     ],
-    "finite_perturbation_status": "FALSIFIED_AS_WRITTEN",
+    "finite_perturbation_status": "CONSISTENT_WITH_LEMMA_3_1",
     "ideal_estimator_status": "VERIFIED",
     "objective": "f(z)=e1^T z + (20d/6)(a^T z)^3, a=(e1+e2)/sqrt(2), evaluated at x=0",
     "samples_per_dimension": 200000,
-    "seed": 20260731
+    "seed": 20260731,
+    "superseded_by": "lemma31_perturbation.py"
+  },
+  "lemma_3_1_perturbation": {
+    "assumption_audit": {
+      "geodesically_L_smooth": true,
+      "grad_at_x_nonzero": true,
+      "hessian_spectral_norm": "exactly L everywhere",
+      "manifold": "Euclidean R^d (Hadamard, sectional curvature 0)",
+      "nu_in_open_unit_interval": true,
+      "u_uniform_on_unit_tangent_sphere": true
+    },
+    "lemma_3_1_all_cells_hold": true,
+    "lemma_3_1_all_cells_non_vacuous": true,
+    "lemma_3_1_cells": [
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0024933892525089547,
+        "control_violated_as_intended": true,
+        "d": 4,
+        "empirical_disagreement": 0.0053065,
+        "events": 10613,
+        "gamma_x": 0.039894228040143274,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.0051477459348554045,
+        "nu": 0.05,
+        "samples": 2000000,
+        "slack_ratio": 0.13301422939329402,
+        "standard_error": 5.1372857900597664e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.004986778505017909,
+        "control_violated_as_intended": true,
+        "d": 4,
+        "empirical_disagreement": 0.0106925,
+        "events": 21385,
+        "gamma_x": 0.07978845608028655,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.010467759464762557,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.13401061413245985,
+        "standard_error": 7.272609725452755e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.009973557010035819,
+        "control_violated_as_intended": true,
+        "d": 4,
+        "empirical_disagreement": 0.020953,
+        "events": 41906,
+        "gamma_x": 0.1595769121605731,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.020640031226724025,
+        "nu": 0.2,
+        "samples": 2000000,
+        "slack_ratio": 0.13130345559585835,
+        "standard_error": 0.00010127677865878239
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0012466946262544773,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.0025325,
+        "events": 5065,
+        "gamma_x": 0.07978845608028655,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.0024226752471178665,
+        "nu": 0.05,
+        "samples": 2000000,
+        "slack_ratio": 0.03174018052751504,
+        "standard_error": 3.553931937833081e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0024933892525089547,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.005191,
+        "events": 10382,
+        "gamma_x": 0.1595769121605731,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.005033974025289102,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.032529768434023804,
+        "standard_error": 5.08136473744997e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.004986778505017909,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.0101175,
+        "events": 20235,
+        "gamma_x": 0.3191538243211462,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.009898822268299327,
+        "nu": 0.2,
+        "samples": 2000000,
+        "slack_ratio": 0.03170101446072393,
+        "standard_error": 7.076417241001975e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0006233473131272387,
+        "control_violated_as_intended": true,
+        "d": 64,
+        "empirical_disagreement": 0.0012315,
+        "events": 2463,
+        "gamma_x": 0.1595769121605731,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.0011548652478630009,
+        "nu": 0.05,
+        "samples": 2000000,
+        "slack_ratio": 0.007717281800520191,
+        "standard_error": 2.4799026268686436e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0012466946262544773,
+        "control_violated_as_intended": true,
+        "d": 64,
+        "empirical_disagreement": 0.002521,
+        "events": 5042,
+        "gamma_x": 0.3191538243211462,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.0024114242544988206,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.007899012350430938,
+        "standard_error": 3.545874052331808e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0024933892525089547,
+        "control_violated_as_intended": true,
+        "d": 64,
+        "empirical_disagreement": 0.004947,
+        "events": 9894,
+        "gamma_x": 0.6383076486422924,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.004793690102774446,
+        "nu": 0.2,
+        "samples": 2000000,
+        "slack_ratio": 0.007750181296624723,
+        "standard_error": 4.9611123707289675e-05
+      },
+      {
+        "L": 0.5,
+        "control_bound_gamma_over_4d": 0.0012466946262544773,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.0024575,
+        "events": 4915,
+        "gamma_x": 0.07978845608028655,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.00234930963206684,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.030800194924528415,
+        "standard_error": 3.501043197212797e-05
+      },
+      {
+        "L": 2.0,
+        "control_bound_gamma_over_4d": 0.004986778505017909,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.0099995,
+        "events": 19999,
+        "gamma_x": 0.3191538243211462,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 1.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.009782088265938403,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.03133128679021586,
+        "standard_error": 7.035449523573458e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.004986778505017909,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.010135,
+        "events": 20270,
+        "gamma_x": 0.3191538243211462,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 0.5,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.009916135163829533,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.03175584695423148,
+        "standard_error": 7.082471946644052e-05
+      },
+      {
+        "L": 1.0,
+        "control_bound_gamma_over_4d": 0.0012466946262544773,
+        "control_violated_as_intended": true,
+        "d": 16,
+        "empirical_disagreement": 0.00256,
+        "events": 5120,
+        "gamma_x": 0.07978845608028655,
+        "gamma_x_non_vacuous": true,
+        "grad_norm": 2.0,
+        "lemma_holds": true,
+        "lower_999_confidence": 0.002449582094816172,
+        "nu": 0.1,
+        "samples": 2000000,
+        "slack_ratio": 0.0320848419152768,
+        "standard_error": 3.573126362165212e-05
+      }
+    ],
+    "lemma_3_2_improved_constants": {
+      "all_inside_paper_interval": true,
+      "asymptotic_c_hat_sqrt_2_over_pi": 0.7978845608028654,
+      "exact_values": [
+        {
+          "above_saha_lower_bound": true,
+          "d": 2,
+          "exact_c_hat": 0.900316316157,
+          "inside_paper_interval": true
+        },
+        {
+          "above_saha_lower_bound": true,
+          "d": 3,
+          "exact_c_hat": 0.866025403784,
+          "inside_paper_interval": true
+        },
+        {
+          "above_saha_lower_bound": true,
+          "d": 5,
+          "exact_c_hat": 0.838525491562,
+          "inside_paper_interval": true
+        },
+        {
+          "above_saha_lower_bound": true,
+          "d": 25,
+          "exact_c_hat": 0.805901288986,
+          "inside_paper_interval": true
+        },
+        {
+          "above_saha_lower_bound": true,
+          "d": 100,
+          "exact_c_hat": 0.799881734349,
+          "inside_paper_interval": true
+        },
+        {
+          "above_saha_lower_bound": true,
+          "d": 1000,
+          "exact_c_hat": 0.798084056846,
+          "inside_paper_interval": true
+        }
+      ],
+      "improvement_factor": 7.978845608028654,
+      "improvement_factor_matches_paper": true,
+      "paper_claimed_factor": 8.0,
+      "paper_interval_would_be_violated_below": 0.3989422804014327,
+      "paper_lower_bound": 0.3989422804014327,
+      "saha_2021_lower_bound": 0.05
+    },
+    "negative_control_all_violated": true,
+    "objective": "f(z)=<g,z>+(L/2)s(<b,z>) with s(t)=t|t|, g=||grad f|| e1, b=e2; Euclidean R^d, Exp_x(v)=x+v",
+    "runtime_seconds": 9.480187488952652,
+    "samples_per_cell": 2000000,
+    "seed": 20260731,
+    "sign_blind_control": {
+      "d": 16,
+      "disagreement_rate": 0.5013875,
+      "expected": 0.5,
+      "fails_as_intended": true,
+      "samples": 400000
+    },
+    "status": "VERIFIED",
+    "superseded_cells_were_vacuous": true,
+    "superseded_finite_nu_gamma_audit": [
+      {
+        "L": 40.0,
+        "d": 2,
+        "gamma_x": 11.283791670955125,
+        "grad_norm": 1.0,
+        "guarantee_vacuous": true,
+        "nu": 0.5
+      },
+      {
+        "L": 100.0,
+        "d": 5,
+        "gamma_x": 44.60310290381928,
+        "grad_norm": 1.0,
+        "guarantee_vacuous": true,
+        "nu": 0.5
+      },
+      {
+        "L": 200.0,
+        "d": 10,
+        "gamma_x": 126.15662610100802,
+        "grad_norm": 1.0,
+        "guarantee_vacuous": true,
+        "nu": 0.5
+      },
+      {
+        "L": 1000.0,
+        "d": 50,
+        "gamma_x": 1410.4739588693906,
+        "grad_norm": 1.0,
+        "guarantee_vacuous": true,
+        "nu": 0.5
+      }
+    ]
   },
   "run_id": "27332bb6-e56c-42ae-9d9e-4b0a885df123",
   "samples_per_dimension": 80000,
