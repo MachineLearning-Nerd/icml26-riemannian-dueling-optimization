@@ -62,6 +62,24 @@ for number in range(1, 7):
 visibility = (LOGBOOK / "pages/visibility-matrix/page.md").read_text()
 for number in range(1, 7):
     assert f"| {number} |" in visibility
+for opened_file in (
+    "logbook.json",
+    "pages/current-verification/page.md",
+    "outputs/claim1.json",
+    "outputs/claim2.json",
+    "outputs/claim3.json",
+    "outputs/current_claim4.json",
+    "outputs/claim5.json",
+    "outputs/claim6.json",
+    "reproduction/verify_claims.py",
+    "reproduction/verify_claim4.py",
+    "reproduction/verify_claim4_source.py",
+    "reproduction/finite_nu_estimator.py",
+    "reproduction/real_applications.py",
+    "reproduction/dense_spd.py",
+):
+    assert f"`{opened_file}`" in visibility
+assert "conclusion remained unverifiable" in visibility
 
 protected_manifest = (
     ROOT / "reproduction/protected_space_8b6af91_manifest.sha256"

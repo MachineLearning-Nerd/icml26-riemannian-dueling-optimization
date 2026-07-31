@@ -15,7 +15,41 @@ fixed command, environment, CPU/runtime, limitations, and links below.
 
 ## Red-team traversal
 
-The evaluator-blind review opened only `logbook.json`, this root page, the six
-canonical pages, their raw links, and linked checkers/source. It did not use
-OpenResearch logs or unpublished paths. All rows were discoverable. The
-preserved older pages are nested only under **Historical rejected baseline**.
+The first clean-room packaging audit opened `logbook.json`,
+`pages/visibility-matrix/page.md`, `reproduction/cumulative_verify.py`, and
+`reproduction/publication_gate.py`. It found two release blockers: Space code
+resolved repository-only paths, and the cumulative verifier imported the
+static Claim 4 checker instead of the full estimator module. Publication was
+stopped. Both defects were fixed and covered by the packaged-Space smoke gate.
+
+The evaluator-blind review was then repeated from the canonical entrypoint. It
+did not use OpenResearch logs, repository knowledge, or unpublished paths. It
+opened exactly these evaluator-reachable files, in traversal order:
+
+1. `logbook.json`
+2. `pages/current-verification/page.md`
+3. `pages/current-claim-1/page.md`
+4. `outputs/claim1.json`
+5. `reproduction/verify_claims.py`
+6. `reproduction/empirical_algorithms.py`
+7. `reproduction/theorem_audit.py`
+8. `pages/current-claim-2/page.md`
+9. `outputs/claim2.json`
+10. `pages/current-claim-3/page.md`
+11. `outputs/claim3.json`
+12. `pages/current-claim-4/page.md`
+13. `outputs/current_claim4.json`
+14. `reproduction/verify_claim4.py`
+15. `reproduction/verify_claim4_source.py`
+16. `reproduction/finite_nu_estimator.py`
+17. `pages/current-claim-5/page.md`
+18. `outputs/claim5.json`
+19. `reproduction/real_applications.py`
+20. `pages/current-claim-6/page.md`
+21. `outputs/claim6.json`
+22. `reproduction/dense_spd.py`
+23. `pages/visibility-matrix/page.md`
+
+Every required claim element and every local link was discoverable. No
+conclusion remained unverifiable. The older pages remain reachable only under
+**Historical rejected baseline**.
