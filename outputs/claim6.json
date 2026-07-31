@@ -1,7 +1,7 @@
 {
   "claim": 6,
-  "run_id": "7443fdc4-50fb-4443-8915-f5dc0ab9d5f8",
-  "git_sha": "cf2385da7d7487b77d7a5d4ba6cf2f35c2f3c942",
+  "run_id": "27332bb6-e56c-42ae-9d9e-4b0a885df123",
+  "git_sha": "d94d1e7e64e2907c7a8c7a92e1e00dda922fc714",
   "seed_root": 20260730,
   "rows": [
     {"n": 5, "m": 50, "duels": 4000, "initial_objective": 0.5743245910237712, "final_objective": 0.5647736359919465, "reference_objective": 0.5647698325870274, "relative_gap": 0.000006734433568628326, "distance_to_reference": 0.0027282397170591837, "minimum_commutator_norm": 0.013900287633113058, "reverse_final_objective": 0.9865079191585706},
