@@ -28,7 +28,7 @@ limited subroutes.
 - Previous Space head: `d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b`
 - Published Space revision:
   `889b4f1b32262f52aef3553ea5cc1daa5d0d57c1`
-- Winning experiment branch: `orx/evaluator-blind-audit-transcript`
+- Winning experiment branch: audit/evaluator-blind-transcript
 - Winning Git SHA: `772a4d264cc633d2ecd91008a87b78cb3d828c49`
 - Winning HF run: `5e3afd6e-cb47-4358-b619-a75887ba7475`
 - GitHub exact-path mirror commit:

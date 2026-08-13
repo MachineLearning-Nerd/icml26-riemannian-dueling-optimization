@@ -109,12 +109,12 @@ loading varied. No GPU was used.
 
 Important lineage:
 
-- [judged baseline](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/judged-baseline-3-of-12)
-- [theorem counterexample](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/theorem-contracts-and-rrdngd-source-audit)
-- [dense SPD reproduction](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/dense-spd-karcher-rdngd)
-- [calibrated real applications](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/calibrated-cpu-vgg-sphere-attack)
-- [finite-nu estimator audit](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/finite-nu-estimator-bias-adjudication)
-- [evaluator-aligned cumulative node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/orx/evaluator-aligned-six-claim-adjudication)
+- [judged baseline](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/audit/judged-baseline)
+- [theorem counterexample](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/audit/theorem-contracts-rrdngd)
+- [dense SPD reproduction](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/experiment/dense-spd-karcher)
+- [calibrated real applications](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/experiment/calibrated-vgg-attack)
+- [finite-nu estimator audit](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/audit/finite-nu-estimator)
+- [evaluator-aligned cumulative node](https://github.com/MachineLearning-Nerd/icml26-repro-nDfDnsyllY-riemannian-dueling/tree/release/six-claim-adjudication)
 
 Previous live score: 3/12. A perfect score is not promised, and no score
 increase is claimed until the live evaluator judges the published revision.
