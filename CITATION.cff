@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this reproduction or audit, please cite this repository and the original paper."
+type: software
+title: "Independent reproduction of Riemannian Dueling Optimization"
+version: "1.0.0"
+date-released: 2026-08-19
+authors:
+  - name: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-riemannian-dueling-optimization"
+url: "https://github.com/MachineLearning-Nerd/icml26-riemannian-dueling-optimization"
+abstract: "Claim-by-claim CPU reproduction and source audit of Riemannian Dueling Optimization."
+keywords:
+  - Riemannian optimization
+  - dueling optimization
+  - zeroth-order optimization
+  - reproduction
+  - claim audit
+preferred-citation:
+  type: article
+  title: "Riemannian Dueling Optimization"
+  authors:
+    - family-names: Ren
+      given-names: Yuxuan
+    - family-names: Roy
+      given-names: Abhishek
+    - family-names: Ma
+      given-names: Shiqian
+  year: 2026
+  url: "https://arxiv.org/abs/2603.00023"

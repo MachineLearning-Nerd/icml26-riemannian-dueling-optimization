@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "paper_source": "arXiv:2603.00023",
+  "openreview_id": "nDfDnsyllY",
+  "phase": "published_evidence_surface_awaiting_live_judge",
+  "overall_status": "PARTIAL_C1_C3_C4_C6_VERIFIED_C2_PRINTED_SCHEDULE_FALSIFIED_C5_MECHANISM_VERIFIED_PAPER_SETTING_BLOCKED",
+  "next_action": "wait_for_live_judge_without_claiming_score_increase",
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "official_author_endorsement": false,
+  "historical_score": {
+    "points": 3,
+    "total": 12,
+    "forecast_only": "9/12-12/12"
+  },
+  "publication_record": {
+    "publication_gate_passed": true,
+    "published_hf_revision": "d5b25eaf0ca7e62f1d9ac666bd11fab7dd936b5b",
+    "evidence_run_id": "c7711be1-ba38-4dce-af0d-503b167f27d8",
+    "evidence_git_sha": "73c4b84239cbcc71549f64c22ce0dcd7700c64e5"
+  },
+  "repository_identity": {
+    "owner": "MachineLearning-Nerd",
+    "canonical_email": "MachineLearning-Nerd@users.noreply.github.com",
+    "recovery_bundle_sha256": "2a564eacf9f1890ee45e70470f4fdc65fec4bbf11b3ca43cd09d93a84a9a1be1"
+  },
+  "github_repository": "https://github.com/MachineLearning-Nerd/icml26-riemannian-dueling-optimization"
+}

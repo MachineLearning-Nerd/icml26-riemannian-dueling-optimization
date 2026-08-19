@@ -1,0 +1,44 @@
+{
+  "schema_version": "1",
+  "paper": "Riemannian Dueling Optimization",
+  "paper_source": "arXiv:2603.00023",
+  "overall_status": "PARTIAL_C1_C3_C4_C6_VERIFIED_C2_PRINTED_SCHEDULE_FALSIFIED_C5_MECHANISM_VERIFIED_PAPER_SETTING_BLOCKED",
+  "claims": [
+    {
+      "id": "C1",
+      "status": "VERIFIED_SCOPED",
+      "evidence": "outputs/claim1.json; pages/current-claim-1/page.md",
+      "claim_page": "pages/current-claim-1/page.md"
+    },
+    {
+      "id": "C2",
+      "status": "VERIFIED_INTENDED_THEOREM_PRINTED_SCHEDULE_FALSIFIED",
+      "evidence": "outputs/claim2.json; pages/current-claim-2/page.md",
+      "claim_page": "pages/current-claim-2/page.md"
+    },
+    {
+      "id": "C3",
+      "status": "VERIFIED_SCOPED",
+      "evidence": "outputs/claim3.json; pages/current-claim-3/page.md",
+      "claim_page": "pages/current-claim-3/page.md"
+    },
+    {
+      "id": "C4",
+      "status": "VERIFIED_SCOPED_WITH_WITHDRAWN_PRIOR_FALSIFICATION",
+      "evidence": "outputs/current_claim4.json; pages/current-claim-4/page.md",
+      "claim_page": "pages/current-claim-4/page.md"
+    },
+    {
+      "id": "C5",
+      "status": "VERIFIED_MECHANISM_PAPER_SETTING_BLOCKED",
+      "evidence": "outputs/claim5.json; pages/current-claim-5/page.md",
+      "claim_page": "pages/current-claim-5/page.md"
+    },
+    {
+      "id": "C6",
+      "status": "VERIFIED_SCOPED",
+      "evidence": "outputs/claim6.json; pages/current-claim-6/page.md",
+      "claim_page": "pages/current-claim-6/page.md"
+    }
+  ]
+}

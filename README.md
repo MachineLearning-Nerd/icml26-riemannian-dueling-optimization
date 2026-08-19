@@ -24,8 +24,17 @@ Normalized Gradient Descent (RDNGD), its restarted strongly-convex variant
 
 **Evidence status: resolved, awaiting a new live judge result.** The prior live
 score was 3/12; this repository does not claim a score increase until a live
-evaluator records one. The current evidence release is rooted at main commit
-d4a0eee and uses CPU-only runs.
+evaluator records one. The current evidence release is recorded in
+`outputs/verdict.json` and uses CPU-only runs. The current machine-readable disposition is in
+[`claims.json`](claims.json), the claim ledger is in
+[`CLAIM_EVIDENCE.md`](CLAIM_EVIDENCE.md), and the final public-state check is
+[`verify_final.py`](verify_final.py).
+
+Overall status:
+`PARTIAL_C1_C3_C4_C6_VERIFIED_C2_PRINTED_SCHEDULE_FALSIFIED_C5_MECHANISM_VERIFIED_PAPER_SETTING_BLOCKED`.
+`current_score_claim=false`, `publication_allowed=false`, and
+`official_author_endorsement=false`. The publication gate passed for the
+packaged evidence surface; that is not a current judge result.
 
 | Claim | How the claim is produced | Current assessment |
 | --- | --- | --- |

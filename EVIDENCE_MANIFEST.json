@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "paper_source": "arXiv:2603.00023",
+  "overall_status": "PARTIAL_C1_C3_C4_C6_VERIFIED_C2_PRINTED_SCHEDULE_FALSIFIED_C5_MECHANISM_VERIFIED_PAPER_SETTING_BLOCKED",
+  "required_evidence": [
+    "README.md",
+    "STATUS.md",
+    "CLAIM_EVIDENCE.md",
+    "SOURCE_AUDIT.md",
+    "docs/SOURCE_AUDIT.md",
+    "ENVIRONMENT.md",
+    "REPORT.md",
+    "branch-audit.md",
+    "outputs/verdict.json",
+    "outputs/publication_gate.json",
+    "outputs/claim1.json",
+    "outputs/claim2.json",
+    "outputs/claim3.json",
+    "outputs/current_claim4.json",
+    "outputs/claim5.json",
+    "outputs/claim6.json",
+    "claims.json",
+    "reproduction_verdicts.json",
+    "AUTONOMOUS_STATE.json",
+    "CITATION.cff",
+    "AUTHOR_THANK_YOU.md",
+    "verify_final.py"
+  ],
+  "controls": {
+    "independent_checkers": true,
+    "negative_controls": true,
+    "source_version_pinned": true,
+    "publication_gate_passed": true,
+    "full_theorem_proof_replaced_by_finite_runs": false
+  },
+  "source_hashes": {
+    "source_archive": "1df1a267c036a4ef161c02719c4b88bb4cb321099d10b5ac3485a97a51e1a71d",
+    "ar5iv_html": "1b20e2af562744080126d140c55b72c92658e355d8b93086c0e2908f762fb323"
+  },
+  "publication": {
+    "current_score_claim": false,
+    "publication_allowed": false,
+    "official_author_endorsement": false
+  }
+}
